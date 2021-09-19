@@ -13,7 +13,7 @@ Vue.use(ElementUI);
 Vue.prototype.$axios = axios
 
 //引入 mock 数据
-// require("./mock")
+require("./mock")
 
 new Vue({
   router,
