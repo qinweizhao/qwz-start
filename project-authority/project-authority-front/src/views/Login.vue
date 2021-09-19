@@ -1,13 +1,107 @@
 <template>
+  <div class="login">
+    <el-form class="loginForm" :model="loginForm" :rules="rules" ref="loginForm" label-width="80px" >
+      <h3 class="title" style="height: 40px">Authority</h3>
+      <el-form-item label="账号" prop="username">
+        <el-input v-model="loginForm.username" style="width: 200px;"></el-input>
+      </el-form-item>
+      <el-form-item label="密码" prop="password">
+        <el-input v-model="loginForm.password" style="width: 200px;"></el-input>
+      </el-form-item>
+      <el-form-item label="验证码" prop="code">
+        <el-input v-model="loginForm.code" style="width: 140px;float: left"></el-input>
+        <el-image src="" class="captchaImg"></el-image>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
+        <el-button @click="resetForm('loginForm')">重置</el-button>
+      </el-form-item>
+    </el-form>
+    <!--  底部  -->
+    <div class="loginFooter">
+      <span>Copyright © 2021 qinweizhao.com All Rights Reserved.</span>
+    </div>
+  </div>
+
 
 </template>
-
 <script>
 export default {
-  name: "Login"
+  name: "Login",
+  data() {
+    return {
+      loginForm: {
+        username: '',
+        password: '',
+        code: ''
+
+      },
+      rules: {
+        username: [
+          {required: true, message: '请输入账号', trigger: 'blur'},
+        ],
+        password: [
+          {required: true, message: '请输入密码', trigger: 'blur'},
+        ],
+        code: [
+          {required: true, message: '请输入验证码', trigger: 'blur'},
+          {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+        ],
+
+      }
+    };
+  },
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert('submit!');
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    }
+  }
 }
 </script>
 
 <style scoped>
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../assets/images/login-background.jpg");
+  background-size: cover;
+  height: 100%;
+}
+.title{
+  text-align: center;
+}
+.loginForm{
+  border-radius: 6px;
+  background: #ffffff;
+  width: 340px;
+  padding: 25px 25px 5px 25px;
+}
+.captchaImg {
+  float: left;
+  margin-left: 5px;
+  border-radius: 4px;
+}
+.loginFooter {
+  height: 40px;
+  line-height: 40px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
 
 </style>
