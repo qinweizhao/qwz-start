@@ -1,19 +1,30 @@
 <template>
   <div class="login">
-    <el-form class="loginForm" :model="loginForm" :rules="rules" ref="loginForm" label-width="80px" >
+    <el-form
+      class="loginForm"
+      :model="loginForm"
+      :rules="rules"
+      ref="loginForm"
+      label-width="80px"
+    >
       <h3 class="title" style="height: 40px">Authority</h3>
       <el-form-item label="账号" prop="username">
-        <el-input v-model="loginForm.username" style="width: 200px;"></el-input>
+        <el-input v-model="loginForm.username" style="width: 200px"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input v-model="loginForm.password" style="width: 200px;"></el-input>
+        <el-input v-model="loginForm.password" style="width: 200px"></el-input>
       </el-form-item>
       <el-form-item label="验证码" prop="code">
-        <el-input v-model="loginForm.code" style="width: 140px;float: left"></el-input>
-        <el-image src="" class="captchaImg"></el-image>
+        <el-input
+          v-model="loginForm.code"
+          style="width: 140px; float: left"
+        ></el-input>
+        <el-image :src="captchaImg" class="captchaImg" @click="getCaptcha"></el-image>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
+        <el-button type="primary" @click="submitForm('loginForm')"
+          >登录</el-button
+        >
         <el-button @click="resetForm('loginForm')">重置</el-button>
       </el-form-item>
     </el-form>
@@ -22,51 +33,70 @@
       <span>Copyright © 2021 qinweizhao.com All Rights Reserved.</span>
     </div>
   </div>
-
-
 </template>
 <script>
+import qs from "qs";
+
 export default {
   name: "Login",
   data() {
     return {
       loginForm: {
-        username: '',
-        password: '',
-        code: ''
-
+        username: "admin",
+        password: "admin",
+        code: "",
       },
+      captchaImg: '',
       rules: {
-        username: [
-          {required: true, message: '请输入账号', trigger: 'blur'},
-        ],
-        password: [
-          {required: true, message: '请输入密码', trigger: 'blur'},
-        ],
+        username: [{ required: true, message: "请输入账号", trigger: "blur" }],
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
         code: [
-          {required: true, message: '请输入验证码', trigger: 'blur'},
-          {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+          { required: true, message: "请输入验证码", trigger: "blur" },
+          { min: 5, max: 5, message: "长度为5个字符", trigger: "blur" },
         ],
-
-      }
+      },
     };
   },
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!');
+          this.$axios
+            .post("/login?" + qs.stringify(this.loginForm))
+            .then((res) => {
+              console.log(res.data);
+              console.log(qs.stringify(this.loginForm));
+              const jwt = res.headers["authorization"];
+              // 将 jwt 存储到应用 store 中
+              this.$store.commit("SET_TOKEN", jwt);
+              this.$router.push("/");
+            })
+            .catch((error) => {
+              this.getCaptcha();
+              console.log("error submit!!!");
+            });
         } else {
-          console.log('error submit!!');
+          this.getCaptcha();
+          console.log("error submit!!");
           return false;
         }
       });
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    getCaptcha() {
+      this.$axios.get("/captcha").then(res => {
+        console.log(res)
+        this.loginForm.token = res.data.data.token;
+        this.captchaImg = res.data.data.captchaImg;
+      });
     }
+  },
+  created() {
+    this.getCaptcha();
   }
-}
+};
 </script>
 
 <style scoped>
@@ -78,10 +108,10 @@ export default {
   background-size: cover;
   height: 100%;
 }
-.title{
+.title {
   text-align: center;
 }
-.loginForm{
+.loginForm {
   border-radius: 6px;
   background: #ffffff;
   width: 340px;
@@ -89,6 +119,8 @@ export default {
 }
 .captchaImg {
   float: left;
+  width: 55px;
+  height: 40px;
   margin-left: 5px;
   border-radius: 4px;
 }
@@ -103,5 +135,4 @@ export default {
   font-size: 12px;
   letter-spacing: 1px;
 }
-
 </style>
