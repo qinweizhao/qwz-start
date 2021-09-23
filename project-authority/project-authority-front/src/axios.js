@@ -22,8 +22,8 @@ request.interceptors.response.use(response => {
         return response;
     } else {
         Element.Message.error(res.msg ? res.msg : '系统异常！', {
-            duration: 3 * 1000;
-        })
+            duration: 3 * 1000
+        });
         return Promise.reject(response.data.msg);
     }
 }, error => {
