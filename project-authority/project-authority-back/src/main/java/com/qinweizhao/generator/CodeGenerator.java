@@ -48,7 +48,7 @@ public class CodeGenerator {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir" + "/project-authority-back");
-        gc.setOutputDir("E:\\Code\\qwz-project\\project-authority\\project-authority-back\\src\\main\\java");
+        gc.setOutputDir("E:\\Code\\qwz-project\\project-authority\\src\\main\\java");
         gc.setAuthor("qinweizhao");
         gc.setOpen(false);
         // gc.setSwagger2(true); 实体属性 Swagger2 注解
