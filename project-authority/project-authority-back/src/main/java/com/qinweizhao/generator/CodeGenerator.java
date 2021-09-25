@@ -20,6 +20,7 @@ import java.util.Scanner;
  * @author qinweizhao
  * @since 2021-09-25
  */
+@SuppressWarnings("all")
 public class CodeGenerator {
 
     /**
@@ -29,9 +30,7 @@ public class CodeGenerator {
      */
     public static String scanner(String tip) {
         Scanner scanner = new Scanner(System.in);
-        StringBuilder help = new StringBuilder();
-        help.append("请输入" + tip + "：");
-        System.out.println(help);
+        System.out.println("请输入" + tip + "：");
         if (scanner.hasNext()) {
             String ipt = scanner.next();
             if (StringUtils.isNotBlank(ipt)) {
