@@ -12,4 +12,8 @@
     <name>project-authority</name>
     <description>project-authority</description>
 
+    <modules>
+        <module>project-authority-back</module>
+    </modules>
+
 </project>

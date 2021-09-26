@@ -5,4 +5,5 @@ package com.qinweizhao.controller;
  * @since 2021/9/24
  */
 public class BaseController {
+
 }

@@ -1,6 +1,5 @@
 package com.qinweizhao.config;
 
-import com.qinweizhao.filter.CaptchaFilter;
 import com.qinweizhao.filter.MyAuthenticationFilter;
 import com.qinweizhao.handler.MyAccessDeniedHandler;
 import com.qinweizhao.handler.MyAuthenticationEntryPoint;
@@ -14,7 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
 
@@ -25,30 +23,18 @@ import javax.annotation.Resource;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /**
-     * 资源过滤
-     */
-    private static final String[] URL_WHITELIST = {
-            "/css/**",
-            "/js/**",
-            "/index.html",
-            "/img/**",
-            "/fonts/**",
-            "/favicon.ico",
-            "/captcha"
-    };
     @Resource
     private UserDetailsService sysUserDetailsService;
+
     @Resource
     private MyAccessDeniedHandler myAccessDeniedHandler;
+
     @Resource
     private MyLogoutSuccessHandler myLogoutSuccessHandler;
+
     @Resource
     private MyAuthenticationEntryPoint myAuthenticationEntryPoint;
-    @Resource
-    private MyAuthenticationFilter myAuthenticationFilter;
-    @Resource
-    private CaptchaFilter captchaFilter;
+
 
     /**
      * 密码编码器
@@ -59,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
     /**
      * 认证
@@ -78,6 +65,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers(URL_WHITELIST);
     }
+
+    /**
+     * 资源过滤
+     */
+    private static final String[] URL_WHITELIST = {
+            "/css/**",
+            "/js/**",
+            "/index.html",
+            "/img/**",
+            "/fonts/**",
+            "/favicon.ico",
+            "/captcha"
+    };
 
     /**
      * 关键配置
@@ -119,8 +119,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // 自定义过滤器
                 .and()
-                .addFilter(myAuthenticationFilter)
-                .addFilterBefore(captchaFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilter(new MyAuthenticationFilter());
     }
 
 }

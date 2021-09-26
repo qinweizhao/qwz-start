@@ -1,21 +1,13 @@
 package com.qinweizhao.common.entity;
 
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @author qinweizhao
  * @since 2021/9/25
  */
 public class CommonResponse {
-
-    /**
-     * 成功状态码
-     */
-    private static final int SUCCESS_CODE = 200;
-
-    /**
-     * 失败状态码
-     */
-    private static final int FAILURE_CODE = 400;
 
     /**
      * 状态码
@@ -39,11 +31,11 @@ public class CommonResponse {
     }
 
     public static CommonResponse success(Object data) {
-        return success(SUCCESS_CODE, "操作成功", data);
+        return success(HttpServletResponse.SC_OK, "操作成功", data);
     }
 
     public static CommonResponse success(String message, Object data) {
-        return success(SUCCESS_CODE, message, data);
+        return success(HttpServletResponse.SC_OK, message, data);
     }
 
     public static CommonResponse success(int code, String message, Object data) {
@@ -51,11 +43,11 @@ public class CommonResponse {
     }
 
     public static CommonResponse failure(String message) {
-        return success(FAILURE_CODE, message, null);
+        return success(HttpServletResponse.SC_BAD_REQUEST, message, null);
     }
 
     public static CommonResponse failure(String message, Object data) {
-        return success(FAILURE_CODE, message, data);
+        return success(HttpServletResponse.SC_BAD_REQUEST, message, data);
     }
 
     public static CommonResponse failure(int code, String message, Object data) {
