@@ -119,7 +119,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // 自定义过滤器
                 .and()
-                .addFilter(new MyAuthenticationFilter());
+                .addFilter(new MyAuthenticationFilter(this.authenticationManager()));
     }
 
 }
