@@ -5,7 +5,6 @@ import com.qinweizhao.entity.SysUser;
 import com.qinweizhao.entity.SysUserDetails;
 
 import java.io.IOException;
-import java.util.Set;
 
 /**
  * <p>
@@ -31,7 +30,7 @@ public interface SysUserService extends IService<SysUser> {
      * @param userId 用户Id
      * @return 权限集合
      */
-    Set<String> selectPermissionByUserId(Long userId);
+    String selectAuthorityByUserId(String userId);
 
     /**
      * 获取验证码

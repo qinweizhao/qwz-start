@@ -18,6 +18,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -51,8 +52,21 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return 权限集合
      */
     @Override
-    public Set<String> selectPermissionByUserId(Long userId) {
-        return this.baseMapper.selectPermissionByUserId(userId);
+    public String selectAuthorityByUserId(String userId) {
+        Set<String> permissionSet = this.baseMapper.selectPermissionByUserId(userId);
+        String authority = "";
+        if (!permissionSet.isEmpty()) {
+            authority = String.join(",", permissionSet);
+            authority = authority.concat(",");
+            log.debug("当前用户拥有的菜单权限有:" + authority);
+        }
+        Set<String> roleSet = this.baseMapper.selectRoleByUserId(userId);
+        if (!roleSet.isEmpty()) {
+            String roles = roleSet.stream().map("ROLE_"::concat).collect(Collectors.joining(","));
+            log.debug("当前用户拥有的菜单权限有:" + roles);
+            authority = authority.concat(roles);
+        }
+        return authority;
     }
 
     /**

@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Set;
 
 
 /**
@@ -32,8 +31,7 @@ public class SysUserDetailsServiceImpl implements UserDetailsService {
         if (accountInfo == null) {
             throw new UsernameNotFoundException("用户名输入错误");
         }
-        Set<String> permission = sysUserService.selectPermissionByUserId(Long.parseLong(accountInfo.getUserId()));
-        String authority = String.join(",", permission);
+        String authority = sysUserService.selectAuthorityByUserId(accountInfo.getUserId());
         log.info("当前用户拥有的权限有{}", authority);
         accountInfo.setAuthorities(AuthorityUtils.commaSeparatedStringToAuthorityList(authority));
         return accountInfo;

@@ -27,8 +27,16 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
     /**
      * 通过用户 Id 查询拥有的权限
      *
-     * @param userId 用户Id
+     * @param userId 用户 Id
      * @return 权限集合
      */
-    Set<String> selectPermissionByUserId(Long userId);
+    Set<String> selectPermissionByUserId(String userId);
+
+    /**
+     * 通过用户 Id 查询拥有的角色
+     *
+     * @param userId 用户 Id
+     * @return 角色集合
+     */
+    Set<String> selectRoleByUserId(String userId);
 }

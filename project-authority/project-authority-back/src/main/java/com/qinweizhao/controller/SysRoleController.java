@@ -1,8 +1,11 @@
 package com.qinweizhao.controller;
 
 
+import com.qinweizhao.service.SysRoleService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -16,5 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sys-role")
 public class SysRoleController extends BaseController {
+
+    @Resource
+    private SysRoleService sysRoleService;
+
 
 }
