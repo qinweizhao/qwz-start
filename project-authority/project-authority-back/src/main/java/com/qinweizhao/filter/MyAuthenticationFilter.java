@@ -1,11 +1,13 @@
 package com.qinweizhao.filter;
 
-import cn.hutool.core.io.IoUtil;
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.qinweizhao.common.entity.Constant;
+import com.qinweizhao.enums.HttpMethod;
+import com.qinweizhao.util.IoUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -13,7 +15,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -34,6 +35,9 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
      */
     private static final String LOGIN_URL = "/login";
 
+    /**
+     * 认证管理器
+     */
     private final AuthenticationManager authenticationManager;
 
     /**
@@ -55,21 +59,16 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
      */
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        //if (HttpMethod.POST.matches(request.getMethod())&&request.getContextPath().equals(MediaType.APPLICATION_JSON_UTF8_VALUE)){
-        try (ServletInputStream inputStream = request.getInputStream()) {
-            String s = IoUtil.read(inputStream).toString();
-            JSONObject jsonObject = JSON.parseObject(s);
-            String username = jsonObject.getString("username");
-            String password = jsonObject.getString("password");
-            log.info(String.valueOf(jsonObject));
-            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
-            return authenticationManager.authenticate(token);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!HttpMethod.POST.matches(request.getMethod())) {
+            throw new AuthenticationServiceException("不支持身份验证方法:" + request.getMethod());
         }
-        // }
-
-        return null;
+        JSONObject jsonObject = IoUtils.parseRequestToJSONObject(request);
+        String username = jsonObject.getString(Constant.LOGIN_USER);
+        String password = jsonObject.getString(Constant.LOGIN_PASS);
+        // 判断账号密码是都为空
+        log.info("当前登录账户：{}", jsonObject);
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+        return authenticationManager.authenticate(token);
     }
 
     /**

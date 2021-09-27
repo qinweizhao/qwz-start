@@ -2,11 +2,11 @@ package com.qinweizhao.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qinweizhao.entity.SysUser;
+import com.qinweizhao.entity.SysUserDetails;
 import com.qinweizhao.mapper.SysUserMapper;
 import com.qinweizhao.service.SysUserService;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -27,7 +27,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return 用户名，密码，状态
      */
     @Override
-    public Map<String, String> selectUserInfoByUsername(String username) {
+    public SysUserDetails selectUserInfoByUsername(String username) {
         return this.baseMapper.selectUserInfoByUsername(username);
     }
 

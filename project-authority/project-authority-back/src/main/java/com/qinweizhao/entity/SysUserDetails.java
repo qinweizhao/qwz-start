@@ -15,7 +15,13 @@ public class SysUserDetails implements UserDetails {
     /**
      * 帐号是否锁定标识
      */
-    private static final String ACCOUNT_STATUS = "1";
+    private static final String ACCOUNT_STATUS = "0";
+
+
+    /**
+     * 用户编号
+     */
+    private String userId;
 
     /**
      * 用户账号
@@ -66,6 +72,14 @@ public class SysUserDetails implements UserDetails {
         this.username = username;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -81,16 +95,12 @@ public class SysUserDetails implements UserDetails {
         return true;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
     public void setStatus(String status) {
         this.status = status;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return ACCOUNT_STATUS.equals(this.status);
     }
 }

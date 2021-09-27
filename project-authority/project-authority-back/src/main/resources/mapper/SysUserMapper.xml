@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qinweizhao.mapper.SysUserMapper">
 
-    <select id="selectUserInfoByUsername" resultType="java.util.Map">
+    <select id="selectUserInfoByUsername" resultType="com.qinweizhao.entity.SysUserDetails">
         SELECT user_id, username, password, status
         FROM sys_user
         WHERE username = #{username}
@@ -16,4 +16,6 @@
                  LEFT JOIN sys_user_role ur ON ur.role_id = r.role_id
         WHERE ur.user_id = #{userId}
     </select>
+
+
 </mapper>

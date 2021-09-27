@@ -2,8 +2,8 @@ package com.qinweizhao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.qinweizhao.entity.SysUser;
+import com.qinweizhao.entity.SysUserDetails;
 
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -22,7 +22,7 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @param username 用户名
      * @return 用户名，密码，状态
      */
-    Map<String, String> selectUserInfoByUsername(String username);
+    SysUserDetails selectUserInfoByUsername(String username);
 
     /**
      * 通过用户 Id 查询拥有的权限
