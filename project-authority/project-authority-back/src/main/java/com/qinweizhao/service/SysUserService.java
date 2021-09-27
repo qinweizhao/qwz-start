@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.qinweizhao.entity.SysUser;
 import com.qinweizhao.entity.SysUserDetails;
 
+import java.io.IOException;
 import java.util.Set;
 
 /**
@@ -31,4 +32,13 @@ public interface SysUserService extends IService<SysUser> {
      * @return 权限集合
      */
     Set<String> selectPermissionByUserId(Long userId);
+
+    /**
+     * 获取验证码
+     *
+     * @return base64编码
+     * @throws IOException e
+     */
+    String getCaptcha() throws IOException;
+
 }

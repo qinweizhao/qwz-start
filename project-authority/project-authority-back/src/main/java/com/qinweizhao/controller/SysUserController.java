@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -26,6 +27,12 @@ public class SysUserController extends BaseController {
 
     @Resource
     private SysUserService sysUserService;
+
+    @GetMapping("/captcha")
+    public CommonResponse captcha() throws IOException {
+        return CommonResponse.success(sysUserService.getCaptcha());
+    }
+
 
     @GetMapping("/list")
     public CommonResponse list() {

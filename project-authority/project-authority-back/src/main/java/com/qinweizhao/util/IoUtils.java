@@ -23,9 +23,10 @@ public class IoUtils {
 
     }
 
-    public static JSONObject parseRequestToJSONObject(HttpServletRequest request) {
+    public static JSONObject parseRequestToJsonObject(HttpServletRequest request) {
         try (ServletInputStream inputStream = request.getInputStream()) {
             String s = IoUtil.read(inputStream).toString();
+            log.info("登录信息:{}", s);
             return JSON.parseObject(s);
         } catch (IOException e) {
             throw new JSONException("can not cast to JSONObject.", e);

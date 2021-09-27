@@ -9,8 +9,8 @@
 
     <packaging>pom</packaging>
 
-    <name>qwz-project-demo</name>
-    <description>project-parent</description>
+    <name>qwz-project</name>
+    <description>project-parents</description>
 
     <modules>
         <module>project-authority</module>

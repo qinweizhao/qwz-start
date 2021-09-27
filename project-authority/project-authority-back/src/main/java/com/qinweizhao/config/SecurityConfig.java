@@ -76,7 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/img/**",
             "/fonts/**",
             "/favicon.ico",
-            "/captcha"
+            "/sys/user/captcha"
     };
 
     /**

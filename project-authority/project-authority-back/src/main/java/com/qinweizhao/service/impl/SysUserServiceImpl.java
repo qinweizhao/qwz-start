@@ -1,12 +1,22 @@
 package com.qinweizhao.service.impl;
 
+import cn.hutool.core.codec.Base64;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.qinweizhao.common.entity.Constant;
 import com.qinweizhao.entity.SysUser;
 import com.qinweizhao.entity.SysUserDetails;
 import com.qinweizhao.mapper.SysUserMapper;
 import com.qinweizhao.service.SysUserService;
+import com.qinweizhao.util.GuavaCacheUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Set;
 
 /**
@@ -19,6 +29,9 @@ import java.util.Set;
  */
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+
+    @Resource
+    DefaultKaptcha defaultKaptcha;
 
     /**
      * 通过用户名查询用户
@@ -40,5 +53,23 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     public Set<String> selectPermissionByUserId(Long userId) {
         return this.baseMapper.selectPermissionByUserId(userId);
+    }
+
+    /**
+     * 获取验证码
+     *
+     * @return base64编码
+     */
+    @Override
+    public String getCaptcha() throws IOException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        String text = defaultKaptcha.createText();
+        String key = Constant.LOGIN_CODE + "_" + RandomStringUtils.random(5);
+        GuavaCacheUtils.CACHE.put(key, text);
+        BufferedImage image = defaultKaptcha.createImage(text);
+        ImageIO.write(image, "jpg", outputStream);
+        outputStream.flush();
+        String str = "data:image/jpeg;base64,";
+        return str + Base64.encode(outputStream.toByteArray());
     }
 }

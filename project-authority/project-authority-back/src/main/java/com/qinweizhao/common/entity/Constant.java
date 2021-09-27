@@ -20,4 +20,10 @@ public class Constant {
      */
     public static final String LOGIN_PASS = "password";
 
+    /**
+     * 验证码
+     */
+    public static final String LOGIN_CODE = "captcha";
+
+
 }
