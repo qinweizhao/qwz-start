@@ -87,7 +87,7 @@ export default {
     getCaptcha() {
       this.$axios.get("sys/user/captcha").then(res => {
         console.log(res)
-        this.captchaImg = res.data.data.captchaImg;
+        this.captchaImg = res.data.data;
       });
     }
   },
