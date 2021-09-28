@@ -1,11 +1,14 @@
 package com.qinweizhao.filter;
 
+import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.qinweizhao.common.entity.CommonResponse;
 import com.qinweizhao.common.entity.Constant;
 import com.qinweizhao.common.exception.UserException;
 import com.qinweizhao.enums.HttpMethod;
 import com.qinweizhao.util.GuavaCacheUtils;
 import com.qinweizhao.util.IoUtils;
+import com.qinweizhao.util.JwtUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,13 +17,18 @@ import org.springframework.security.authentication.AuthenticationServiceExceptio
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.annotation.Resource;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
@@ -47,6 +55,12 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
     private final AuthenticationManager authenticationManager;
 
     /**
+     * Jwt 工具类
+     */
+    @Resource
+    private JwtUtils jwtUtils;
+
+    /**
      * 无参构造器
      */
     public MyAuthenticationFilter(AuthenticationManager authenticationManager) {
@@ -71,7 +85,7 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         JSONObject jsonObject = IoUtils.parseRequestToJsonObject(request);
         String captcha = jsonObject.getString(Constant.LOGIN_CODE);
         if (StringUtils.isEmpty(captcha)) {
-            throw new UserException("请输入验证码");
+            throw new UserException("验证码为空");
         }
         boolean b = this.validateCaptcha(captcha);
         if (!b) {
@@ -105,15 +119,32 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         if (log.isDebugEnabled()) {
             log.debug("登录成功");
         }
-        super.successfulAuthentication(request, response, chain, authResult);
+        // 将认证信息放入 SecurityContextHolder
+        SecurityContextHolder.getContext().setAuthentication(authResult);
+        // 生成 token
+        String token = jwtUtils.generateToken(authResult.getName());
+        CommonResponse success = CommonResponse.success(token);
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json; charset=utf-8");
+        PrintWriter writer = response.getWriter();
+        writer.write(success.toString());
+        writer.flush();
+        writer.close();
     }
 
     @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) {
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException {
         if (log.isDebugEnabled()) {
             log.debug("登录失败");
         }
-        log.info("登录失败");
+        response.setContentType("application/json;charset=UTF-8");
+        ServletOutputStream outputStream = response.getOutputStream();
+
+        CommonResponse failure = CommonResponse.failure("登录失败");
+        outputStream.write(JSONUtil.toJsonStr(failure).getBytes(StandardCharsets.UTF_8));
+
+        outputStream.flush();
+        outputStream.close();
     }
 
     /**

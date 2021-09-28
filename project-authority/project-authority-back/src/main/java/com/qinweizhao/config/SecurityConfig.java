@@ -1,5 +1,6 @@
 package com.qinweizhao.config;
 
+import com.qinweizhao.filter.JwtAuthenticationFilter;
 import com.qinweizhao.filter.MyAuthenticationFilter;
 import com.qinweizhao.handler.MyAccessDeniedHandler;
 import com.qinweizhao.handler.MyAuthenticationEntryPoint;
@@ -13,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
 
@@ -119,7 +121,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // 自定义过滤器
                 .and()
-                .addFilter(new MyAuthenticationFilter(this.authenticationManager()));
+                .addFilter(new MyAuthenticationFilter(this.authenticationManager()))
+                .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
 }

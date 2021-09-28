@@ -35,7 +35,6 @@
   </div>
 </template>
 <script>
-import qs from "qs";
 
 export default {
   name: "Login",
@@ -62,14 +61,14 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$axios
-            .post("/login?" + qs.stringify(this.loginForm))
+            .post("/login" ,this.loginForm)
             .then((res) => {
-              console.log(res.data);
-              console.log(qs.stringify(this.loginForm));
-              const jwt = res.headers["authorization"];
-              // 将 jwt 存储到应用 store 中
+              console.log(res);
+              const jwt = res.data.data;
+              // const jwt = res.headers["authorization"];
+              // // 将 jwt 存储到应用 store 中
               this.$store.commit("SET_TOKEN", jwt);
-              this.$router.push("/");
+              // this.$router.push("/");
             })
             .catch((error) => {
               this.getCaptcha();
@@ -86,9 +85,8 @@ export default {
       this.$refs[formName].resetFields();
     },
     getCaptcha() {
-      this.$axios.get("/captcha").then(res => {
+      this.$axios.get("sys/user/captcha").then(res => {
         console.log(res)
-        this.loginForm.token = res.data.data.token;
         this.captchaImg = res.data.data.captchaImg;
       });
     }

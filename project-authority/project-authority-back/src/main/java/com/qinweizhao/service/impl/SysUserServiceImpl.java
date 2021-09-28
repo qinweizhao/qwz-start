@@ -53,18 +53,20 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      */
     @Override
     public String selectAuthorityByUserId(String userId) {
-        Set<String> permissionSet = this.baseMapper.selectPermissionByUserId(userId);
         String authority = "";
-        if (!permissionSet.isEmpty()) {
-            authority = String.join(",", permissionSet);
-            authority = authority.concat(",");
-            log.debug("当前用户拥有的菜单权限有:" + authority);
-        }
         Set<String> roleSet = this.baseMapper.selectRoleByUserId(userId);
         if (!roleSet.isEmpty()) {
             String roles = roleSet.stream().map("ROLE_"::concat).collect(Collectors.joining(","));
-            log.debug("当前用户拥有的菜单权限有:" + roles);
-            authority = authority.concat(roles);
+            log.debug("当前用户拥有的角色有:" + roles);
+            authority = authority.concat(",");
+        }
+        Set<String> permissionSet = this.baseMapper.selectPermissionByUserId(userId);
+
+        if (!permissionSet.isEmpty()) {
+            String permission = String.join(",", permissionSet);
+            log.debug("当前用户拥有的菜单权限有:" + permission);
+            authority = authority.concat(permission);
+            log.debug("当前用户拥有的菜单权限有:" + authority);
         }
         return authority;
     }

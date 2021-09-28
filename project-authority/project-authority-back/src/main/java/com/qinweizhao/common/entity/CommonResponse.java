@@ -24,6 +24,10 @@ public class CommonResponse {
      */
     private Object data;
 
+    public CommonResponse(){
+
+    }
+
     public CommonResponse(int code, String message, Object data) {
         this.code = code;
         this.message = message;

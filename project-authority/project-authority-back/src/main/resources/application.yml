@@ -5,3 +5,9 @@ spring:
     url: jdbc:mysql://39.105.174.87:3306/project-authority?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&allowMultiQueries=true&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
     username: root
     password: 112121
+qinweizhao:
+  jwt:
+    header: Authorization
+    #7天，秒单位
+    expire: 604800
+    secret: ji8n3439n439n43ld9ne9343fdfer49h
