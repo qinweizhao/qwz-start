@@ -17,77 +17,80 @@ import java.util.Date;
 @ConfigurationProperties(prefix = "qinweizhao.jwt")
 public class JwtUtils {
 
-	private long expire;
-	private String secret;
-	private String header;
+    private long expire;
+    private String secret;
+    private String header;
 
-	/**
-	 * 生成 jwt
-	 * @param username 用户名
-	 * @return jwt
-	 */
-	public String generateToken(String username) {
+    /**
+     * 生成 jwt
+     *
+     * @param username 用户名
+     * @return jwt
+     */
+    public String generateToken(String username) {
 
-		Date nowDate = new Date();
-		Date expireDate = new Date(nowDate.getTime() + 1000 * expire);
+        Date nowDate = new Date();
+        Date expireDate = new Date(nowDate.getTime() + 1000 * expire);
 
-		return Jwts.builder()
-				.setHeaderParam("typ", "JWT")
-				.setSubject(username)
-				.setIssuedAt(nowDate)
-				// 7天过期
-				.setExpiration(expireDate)
-				.signWith(SignatureAlgorithm.HS512, secret)
-				.compact();
-	}
+        return Jwts.builder()
+                .setHeaderParam("typ", "JWT")
+                .setSubject(username)
+                .setIssuedAt(nowDate)
+                // 7天过期
+                .setExpiration(expireDate)
+                .signWith(SignatureAlgorithm.HS512, secret)
+                .compact();
+    }
 
-	/**
-	 * 解析jwt
- 	 * @param jwt jwt
-	 * @return Claims
-	 */
-	public Claims getClaimByToken(String jwt) {
-		try {
-			return Jwts.parser()
-					.setSigningKey(secret)
-					.parseClaimsJws(jwt)
-					.getBody();
-		} catch (Exception e) {
-			throw new UserException("解析jwt 异常"+e.getMessage());
-		}
-	}
+    /**
+     * 解析jwt
+     *
+     * @param jwt jwt
+     * @return Claims
+     */
+    public Claims getClaimByToken(String jwt) {
+        try {
+            return Jwts.parser()
+                    .setSigningKey(secret)
+                    .parseClaimsJws(jwt)
+                    .getBody();
+        } catch (Exception e) {
+            throw new UserException("解析jwt 异常" + e.getMessage());
+        }
+    }
 
-	/**
-	 * jwt是否过期
-	 * @param claims claims
-	 * @return b
-	 */
-	public boolean isTokenExpired(Claims claims) {
-		return claims.getExpiration().before(new Date());
-	}
+    /**
+     * jwt是否过期
+     *
+     * @param claims claims
+     * @return b
+     */
+    public boolean isTokenExpired(Claims claims) {
+        return claims.getExpiration().before(new Date());
+    }
 
 
-	public long getExpire() {
-		return expire;
-	}
+    public long getExpire() {
+        return expire;
+    }
 
-	public void setExpire(long expire) {
-		this.expire = expire;
-	}
+    public void setExpire(long expire) {
+        this.expire = expire;
+    }
 
-	public String getSecret() {
-		return secret;
-	}
+    public String getSecret() {
+        return secret;
+    }
 
-	public void setSecret(String secret) {
-		this.secret = secret;
-	}
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
 
-	public String getHeader() {
-		return header;
-	}
+    public String getHeader() {
+        return header;
+    }
 
-	public void setHeader(String header) {
-		this.header = header;
-	}
+    public void setHeader(String header) {
+        this.header = header;
+    }
 }
