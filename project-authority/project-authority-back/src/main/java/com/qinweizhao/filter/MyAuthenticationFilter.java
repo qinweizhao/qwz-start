@@ -9,6 +9,7 @@ import com.qinweizhao.enums.HttpMethod;
 import com.qinweizhao.util.GuavaCacheUtils;
 import com.qinweizhao.util.IoUtils;
 import com.qinweizhao.util.JwtUtils;
+import com.qinweizhao.util.SpringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +21,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.annotation.Resource;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -53,12 +53,6 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
      * 认证管理器
      */
     private final AuthenticationManager authenticationManager;
-
-    /**
-     * Jwt 工具类
-     */
-    @Resource
-    private JwtUtils jwtUtils;
 
     /**
      * 无参构造器
@@ -122,6 +116,7 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         // 将认证信息放入 SecurityContextHolder
         SecurityContextHolder.getContext().setAuthentication(authResult);
         // 生成 token
+        JwtUtils jwtUtils = SpringUtils.getBean(JwtUtils.class);
         String token = jwtUtils.generateToken(authResult.getName());
         CommonResponse success = CommonResponse.success(token);
         response.setCharacterEncoding("UTF-8");

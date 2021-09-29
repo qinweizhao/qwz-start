@@ -42,7 +42,7 @@ export default {
     return {
       loginForm: {
         username: "admin",
-        password: "admin",
+        password: "123456",
         captcha: "",
       },
       captchaImg: '',
@@ -65,7 +65,6 @@ export default {
             .then((res) => {
               console.log(res);
               const jwt = res.data.data;
-              // const jwt = res.headers["authorization"];
               // // 将 jwt 存储到应用 store 中
               this.$store.commit("SET_TOKEN", jwt);
                this.$router.push("/home");
