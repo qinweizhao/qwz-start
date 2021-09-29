@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
+
     @Resource
     DefaultKaptcha defaultKaptcha;
 
@@ -80,6 +81,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public String getCaptcha() throws IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         String text = defaultKaptcha.createText();
+        if (log.isDebugEnabled()){
+            log.debug("验证码为:"+text);
+        }
         String key = Constant.LOGIN_CODE + "_" + RandomStringUtils.random(5);
         GuavaCacheUtils.CACHE.put(key, text);
         BufferedImage image = defaultKaptcha.createImage(text);

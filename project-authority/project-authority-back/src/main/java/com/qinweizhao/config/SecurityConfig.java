@@ -37,6 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private MyAuthenticationEntryPoint myAuthenticationEntryPoint;
 
+    @Resource
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
+
 
     /**
      * 密码编码器
@@ -122,7 +125,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 自定义过滤器
                 .and()
                 .addFilter(new MyAuthenticationFilter(this.authenticationManager()))
-                .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
 }

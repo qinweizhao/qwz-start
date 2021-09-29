@@ -9,14 +9,14 @@
     >
       <h3 class="title" style="height: 40px">Authority</h3>
       <el-form-item label="账号" prop="username">
-        <el-input v-model="loginForm.username" style="width: 200px"></el-input>
+        <el-input v-model="loginForm.username" style="width: 230px"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input v-model="loginForm.password" style="width: 200px"></el-input>
+        <el-input v-model="loginForm.password" style="width: 230px"></el-input>
       </el-form-item>
       <el-form-item label="验证码" prop="code">
         <el-input
-          v-model="loginForm.code"
+          v-model="loginForm.captcha"
           style="width: 140px; float: left"
         ></el-input>
         <el-image :src="captchaImg" class="captchaImg" @click="getCaptcha"></el-image>
@@ -43,13 +43,13 @@ export default {
       loginForm: {
         username: "admin",
         password: "admin",
-        code: "",
+        captcha: "",
       },
       captchaImg: '',
       rules: {
         username: [{ required: true, message: "请输入账号", trigger: "blur" }],
         password: [{ required: true, message: "请输入密码", trigger: "blur" }],
-        code: [
+        captcha: [
           { required: true, message: "请输入验证码", trigger: "blur" },
           { min: 5, max: 5, message: "长度为5个字符", trigger: "blur" },
         ],
@@ -68,7 +68,7 @@ export default {
               // const jwt = res.headers["authorization"];
               // // 将 jwt 存储到应用 store 中
               this.$store.commit("SET_TOKEN", jwt);
-              // this.$router.push("/");
+               this.$router.push("/home");
             })
             .catch((error) => {
               this.getCaptcha();
@@ -112,12 +112,12 @@ export default {
 .loginForm {
   border-radius: 6px;
   background: #ffffff;
-  width: 340px;
+  width: 350px;
   padding: 25px 25px 5px 25px;
 }
 .captchaImg {
   float: left;
-  width: 55px;
+  width: 88px;
   height: 40px;
   margin-left: 5px;
   border-radius: 4px;
