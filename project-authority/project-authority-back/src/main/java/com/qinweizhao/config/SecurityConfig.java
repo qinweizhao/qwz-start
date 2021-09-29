@@ -7,6 +7,10 @@ import com.qinweizhao.handler.MyAuthenticationEntryPoint;
 import com.qinweizhao.handler.MyLogoutSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -17,6 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author qinweizhao
@@ -40,7 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
-
     /**
      * 密码编码器
      *
@@ -51,6 +55,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * 认证管理器
+     *
+     * @return AuthenticationManager
+     */
+    @Override
+    public AuthenticationManager authenticationManagerBean() {
+        return new ProviderManager(List.of(daoAuthenticationProvider()));
+    }
+
+    /**
+     * 认证提供者
+     *
+     * @return AuthenticationProvider
+     */
+    private AuthenticationProvider daoAuthenticationProvider() {
+        return new DaoAuthenticationProvider();
+    }
 
     /**
      * 认证
@@ -62,6 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(sysUserDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
+
 
     /**
      * @param web web
