@@ -1,7 +1,7 @@
 package com.qinweizhao.util;
 
-import com.qinweizhao.common.exception.UserException;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -55,7 +55,7 @@ public class JwtUtils {
                     .parseClaimsJws(jwt)
                     .getBody();
         } catch (Exception e) {
-            throw new UserException("解析jwt 异常" + e.getMessage());
+            throw new JwtException("解析jwt 异常" + e.getMessage());
         }
     }
 

@@ -1,10 +1,9 @@
 package com.qinweizhao.filter;
 
-import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.qinweizhao.common.entity.CommonResponse;
 import com.qinweizhao.common.entity.Constant;
-import com.qinweizhao.common.exception.UserException;
+import com.qinweizhao.common.exception.CaptchaException;
 import com.qinweizhao.enums.HttpMethod;
 import com.qinweizhao.util.GuavaCacheUtils;
 import com.qinweizhao.util.IoUtils;
@@ -79,11 +78,11 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         JSONObject jsonObject = IoUtils.parseRequestToJsonObject(request);
         String captcha = jsonObject.getString(Constant.LOGIN_CODE);
         if (StringUtils.isEmpty(captcha)) {
-            throw new UserException("验证码为空");
+            throw new CaptchaException("验证码为空");
         }
         boolean b = this.validateCaptcha(captcha);
         if (!b) {
-            throw new UserException("验证码错误");
+            throw new CaptchaException("验证码错误");
         }
         String username = jsonObject.getString(Constant.LOGIN_USER);
         username = username != null ? username : "";
@@ -132,11 +131,15 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         if (log.isDebugEnabled()) {
             log.debug("登录失败");
         }
+        CommonResponse failure = new CommonResponse();
+        if (failed instanceof CaptchaException){
+            failure = CommonResponse.failure("验证码错误");
+        }
         response.setContentType("application/json;charset=UTF-8");
         ServletOutputStream outputStream = response.getOutputStream();
 
-        CommonResponse failure = CommonResponse.failure("登录失败");
-        outputStream.write(JSONUtil.toJsonStr(failure).getBytes(StandardCharsets.UTF_8));
+
+        outputStream.write(failure.toString().getBytes(StandardCharsets.UTF_8));
 
         outputStream.flush();
         outputStream.close();

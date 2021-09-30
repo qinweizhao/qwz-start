@@ -21,7 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
-import java.util.List;
+import java.util.Collections;
 
 /**
  * @author qinweizhao
@@ -62,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     public AuthenticationManager authenticationManagerBean() {
-        return new ProviderManager(List.of(daoAuthenticationProvider()));
+        return new ProviderManager(Collections.singletonList(daoAuthenticationProvider()));
     }
 
     /**
