@@ -4,9 +4,7 @@ package com.qinweizhao.controller;
 import com.qinweizhao.common.entity.CommonResponse;
 import com.qinweizhao.entity.SysUser;
 import com.qinweizhao.service.SysUserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -38,5 +36,17 @@ public class SysUserController extends BaseController {
     public CommonResponse list() {
         List<SysUser> list = sysUserService.list(null);
         return CommonResponse.success(list);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public CommonResponse delete(@PathVariable("id")String id){
+        boolean b = sysUserService.removeById(id);
+        return getCommonResponse(b);
+    }
+
+    @PutMapping("/update")
+    public CommonResponse update(SysUser sysUser){
+        boolean b = sysUserService.updateById(sysUser);
+        return getCommonResponse(b);
     }
 }

@@ -1,6 +1,6 @@
 let proxyObj = {};
 proxyObj['/ws'] = {
-    ws: true,
+    ws: false,
     target: "ws://localhost:8080"
 };
 proxyObj['/'] = {

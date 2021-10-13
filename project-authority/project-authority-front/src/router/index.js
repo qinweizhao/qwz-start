@@ -13,8 +13,16 @@ const routes = [
   },
   {
     path: '/home',
-    name: 'homoe',
-    component: Home
+    name: 'Home',
+    component: Home,
+    children: [
+      {
+        path: '/index',
+        name: 'Index',
+        meta: { title: "首页" },
+        component: () => import('@/views/Index.vue')
+      }
+    ]
   }
 ]
 

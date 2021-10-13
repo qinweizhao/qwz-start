@@ -137,8 +137,6 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         }
         response.setContentType("application/json;charset=UTF-8");
         ServletOutputStream outputStream = response.getOutputStream();
-
-
         outputStream.write(failure.toString().getBytes(StandardCharsets.UTF_8));
 
         outputStream.flush();

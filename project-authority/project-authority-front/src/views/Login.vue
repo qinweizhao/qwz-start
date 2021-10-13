@@ -63,11 +63,12 @@ export default {
           this.$axios
             .post("/login" ,this.loginForm)
             .then((res) => {
-              console.log(res);
+              console.log("rererererererere"+res)
               const jwt = res.data.data;
+              console.log("jwssssssssssssst"+jwt)
               // // 将 jwt 存储到应用 store 中
               this.$store.commit("SET_TOKEN", jwt);
-               this.$router.push("/home");
+              this.$router.push("/home");
             })
             .catch((error) => {
               this.getCaptcha();
