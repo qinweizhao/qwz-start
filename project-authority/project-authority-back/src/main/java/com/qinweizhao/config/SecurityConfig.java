@@ -126,16 +126,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
+                // 退出
+                .and()
+                .logout()
+                .logoutSuccessHandler(myLogoutSuccessHandler)
+                .permitAll()
+
                 // 拦截规则
                 .and()
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated()
-
-                // 退出
-                .and()
-                .logout()
-                .logoutSuccessHandler(myLogoutSuccessHandler)
 
                 // 异常
                 .and()

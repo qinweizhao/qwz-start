@@ -19,6 +19,7 @@ import java.nio.charset.StandardCharsets;
  */
 @Component
 public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
+
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException {
 
@@ -34,4 +35,5 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
         outputStream.flush();
         outputStream.close();
     }
+
 }
