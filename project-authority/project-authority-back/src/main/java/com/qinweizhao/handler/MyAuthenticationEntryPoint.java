@@ -24,8 +24,6 @@ public class MyAuthenticationEntryPoint implements AuthenticationEntryPoint {
         httpServletResponse.setContentType("application/json;charset=UTF-8");
         ServletOutputStream outputStream = httpServletResponse.getOutputStream();
 
-        System.out.println(e);
-
         CommonResponse response = CommonResponse.failure("登录失败");
 
         outputStream.write(JSONUtil.toJsonStr(response).getBytes(StandardCharsets.UTF_8));

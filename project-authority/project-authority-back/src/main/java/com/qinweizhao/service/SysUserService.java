@@ -40,4 +40,10 @@ public interface SysUserService extends IService<SysUser> {
      */
     String getCaptcha() throws IOException;
 
+    /**
+     * 通过用户名获取用户信息
+     * @param name 用户名
+     * @return SysUser
+     */
+    SysUser getSysUserByUsername(String name);
 }

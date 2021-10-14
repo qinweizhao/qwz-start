@@ -39,4 +39,13 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @return 角色集合
      */
     Set<String> selectRoleByUserId(String userId);
+
+
+    /**
+     * 通过用户名获取用户信息
+     *
+     * @param username 用户名
+     * @return SysUser
+     */
+    SysUser getSysUserByUsername(String username);
 }

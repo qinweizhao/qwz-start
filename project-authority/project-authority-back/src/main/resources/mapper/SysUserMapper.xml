@@ -24,5 +24,11 @@
         WHERE ur.user_id = #{id}
     </select>
 
+    <select id="getSysUserByUsername" resultType="com.qinweizhao.entity.SysUser">
+        SELECT *
+        FROM sys_user
+        WHERE username = #{username}
+    </select>
+
 
 </mapper>

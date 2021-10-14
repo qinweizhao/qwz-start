@@ -27,10 +27,9 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
         if (authentication != null) {
             new SecurityContextLogoutHandler().logout(httpServletRequest, httpServletResponse, authentication);
         }
-        httpServletResponse.setContentType("application/json;charset=UTG-8");
+        httpServletResponse.setContentType("application/json;charset=UTF-8");
         ServletOutputStream outputStream = httpServletResponse.getOutputStream();
         CommonResponse result = CommonResponse.success("退出成功");
-        System.out.println(result.toString());
         outputStream.write(JSONUtil.toJsonStr(result).getBytes(StandardCharsets.UTF_8));
         outputStream.flush();
         outputStream.close();

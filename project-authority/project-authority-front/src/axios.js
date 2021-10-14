@@ -14,13 +14,11 @@ const request = axios.create({
 request.interceptors.request.use(config => {
     // 请求头带上token
     config.headers['Authorization'] = localStorage.getItem("token");
-    console.log("logggggg"+localStorage.getItem("token"))
     return config;
 })
 
 request.interceptors.response.use(response => {
     let res = response.data;
-    console.log("respddddddddddddddddddddddonse"+res.data);
     console.log(res);
     if (res.code === 200) {
         return response;

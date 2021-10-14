@@ -82,13 +82,13 @@ public class CommonResponse {
         this.data = data;
     }
 
-
     @Override
     public String toString() {
-        return "{" +
+        return "CommonResponse{" +
                 "code=" + code +
                 ", message='" + message + '\'' +
                 ", data=" + data +
                 '}';
     }
+
 }

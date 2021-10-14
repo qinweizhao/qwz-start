@@ -1,5 +1,6 @@
 package com.qinweizhao.filter;
 
+import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.qinweizhao.common.entity.CommonResponse;
 import com.qinweizhao.common.entity.Constant;
@@ -121,7 +122,7 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         PrintWriter writer = response.getWriter();
-        writer.write(success.toString());
+        writer.write(JSONUtil.toJsonStr(success));
         writer.flush();
         writer.close();
     }

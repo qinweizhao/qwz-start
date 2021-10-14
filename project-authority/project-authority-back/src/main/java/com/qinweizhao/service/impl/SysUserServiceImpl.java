@@ -92,4 +92,15 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         String str = "data:image/jpeg;base64,";
         return str + Base64.encode(outputStream.toByteArray());
     }
+
+    /**
+     * 通过用户名获取用户信息
+     *
+     * @param username 用户名
+     * @return SysUser
+     */
+    @Override
+    public SysUser getSysUserByUsername(String username) {
+        return this.baseMapper.getSysUserByUsername(username);
+    }
 }

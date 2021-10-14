@@ -1,6 +1,7 @@
 package com.qinweizhao.controller;
 
 
+import cn.hutool.core.map.MapUtil;
 import com.qinweizhao.common.entity.CommonResponse;
 import com.qinweizhao.entity.SysUser;
 import com.qinweizhao.service.SysUserService;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 
@@ -29,6 +31,18 @@ public class SysUserController extends BaseController {
     @GetMapping("/captcha")
     public CommonResponse captcha() throws IOException {
         return CommonResponse.success(sysUserService.getCaptcha());
+    }
+
+    @GetMapping("/info")
+    public CommonResponse info(Principal principal){
+        SysUser sysUser = sysUserService.getSysUserByUsername(principal.getName());
+        return CommonResponse.success(MapUtil.builder()
+                .put("id", sysUser.getUserId())
+                .put("username", sysUser.getUsername())
+                .put("avatar", sysUser.getAvatar())
+                .put("created", sysUser.getCreateBy())
+                .map()
+        );
     }
 
 
