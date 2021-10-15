@@ -14,8 +14,7 @@ Vue.config.productionTip = false
 Vue.use(ElementUI);
 
 Vue.prototype.$axios = request
-//引入 mock 数据
-// require("./mock")
+
 
 new Vue({
   router,

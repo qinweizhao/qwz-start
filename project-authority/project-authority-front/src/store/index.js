@@ -11,7 +11,7 @@ export default new Vuex.Store({
     SET_TOKEN: (state, token) => {
       state.token = token;
       console.log(token)
-      localStorage.setItem("token", token)
+      window.localStorage.setItem("token", token)
     }
   },
   actions: {

@@ -13,7 +13,7 @@ const request = axios.create({
 
 request.interceptors.request.use(config => {
     // 请求头带上token
-    config.headers['Authorization'] = localStorage.getItem("token");
+    config.headers['Authorization'] = window.localStorage.getItem("token");
     return config;
 })
 
@@ -31,14 +31,14 @@ request.interceptors.response.use(response => {
 }, 
 error => {
     console.log(error);
-    // if (error.response.data) { error.message = error.response.data.msg };
-    // if (error.response.status === 401) {
-    //     router.push("/")
-    // }
-    // Element.Message.error(error.message, {
-    //     duration: 3 * 1000
-    // });
-    // return Promise.reject(error);
+    if (error.response.data) { error.message = error.response.data.msg };
+    if (error.response.status === 401) {
+        router.push("/")
+    }
+    Element.Message.error(error.message, {
+        duration: 3 * 1000
+    });
+    return Promise.reject(error);
 }
 )
 export default request

@@ -55,7 +55,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throw new JwtException("token已过期");
         }
         String username = claim.getSubject();
-        SysUserDetails sysUserDetails = sysUserService.selectUserInfoByUsername(username);
+        SysUserDetails sysUserDetails = sysUserService.getUserDetailsInfoByUsername(username);
         String authority = sysUserService.selectAuthorityByUserId(sysUserDetails.getUserId());
         log.info("当前用户拥有的权限有{}", authority);
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, null, AuthorityUtils.commaSeparatedStringToAuthorityList(authority));

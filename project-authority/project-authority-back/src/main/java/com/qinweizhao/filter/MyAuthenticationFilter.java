@@ -23,12 +23,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
@@ -137,11 +135,10 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
             failure = CommonResponse.failure("验证码错误");
         }
         response.setContentType("application/json;charset=UTF-8");
-        ServletOutputStream outputStream = response.getOutputStream();
-        outputStream.write(failure.toString().getBytes(StandardCharsets.UTF_8));
-
-        outputStream.flush();
-        outputStream.close();
+        PrintWriter writer = response.getWriter();
+        writer.write(JSONUtil.toJsonStr(failure));
+        writer.flush();
+        writer.close();
     }
 
     /**

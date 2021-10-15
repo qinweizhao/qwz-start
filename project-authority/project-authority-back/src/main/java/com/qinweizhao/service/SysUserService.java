@@ -22,7 +22,7 @@ public interface SysUserService extends IService<SysUser> {
      * @param username 用户名
      * @return 用户名，密码，状态
      */
-    SysUserDetails selectUserInfoByUsername(String username);
+    SysUserDetails getUserDetailsInfoByUsername(String username);
 
     /**
      * 通过用户 Id 查询拥有的权限

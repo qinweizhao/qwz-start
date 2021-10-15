@@ -1,8 +1,11 @@
 <template>
   <el-container>
-    <el-aside width="200px"> Aside </el-aside>
+    <el-aside width="200px"> 
+      <SideMenu/>
+       </el-aside>
     <el-container>
       <el-header style="height: 55px">
+
         <Strong>Authority</Strong>
 
         <div class="header-avatar block">
@@ -35,6 +38,8 @@
 </template>
 
 <script>
+import SideMenu from "./inc/SideMenu.vue"
+
 export default {
   name: "Home",
   data() {
@@ -45,6 +50,9 @@ export default {
         avatar: "",
       },
     };
+  },
+  components:{
+			SideMenu
   },
   created() {
     this.getUserInfo();

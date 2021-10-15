@@ -65,7 +65,7 @@ export default {
             .then((res) => {
               const jwt = res.data.data;
               // // 将 jwt 存储到应用 store 中
-              this.$store.commit("SET_TOKEN", jwt);
+              this.$store.commit('SET_TOKEN', jwt);
               this.$router.push("/home");
             })
             .catch((error) => {

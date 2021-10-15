@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.List;
 
 
 /**
@@ -28,11 +27,21 @@ public class SysUserController extends BaseController {
     @Resource
     private SysUserService sysUserService;
 
+    /**
+     * 获取验证码
+     * @return r
+     * @throws IOException e
+     */
     @GetMapping("/captcha")
     public CommonResponse captcha() throws IOException {
         return CommonResponse.success(sysUserService.getCaptcha());
     }
 
+    /**
+     * 登录成功获取用户信息
+     * @param principal principal
+     * @return r
+     */
     @GetMapping("/info")
     public CommonResponse info(Principal principal){
         SysUser sysUser = sysUserService.getSysUserByUsername(principal.getName());
@@ -45,15 +54,8 @@ public class SysUserController extends BaseController {
         );
     }
 
-
-    @GetMapping("/list")
-    public CommonResponse list() {
-        List<SysUser> list = sysUserService.list(null);
-        return CommonResponse.success(list);
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public CommonResponse delete(@PathVariable("id")String id){
+    @DeleteMapping("/delete")
+    public CommonResponse delete(String id){
         boolean b = sysUserService.removeById(id);
         return getCommonResponse(b);
     }

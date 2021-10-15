@@ -21,7 +21,15 @@ const routes = [
         name: 'Index',
         meta: { title: "首页" },
         component: () => import('@/views/Index.vue')
-      }
+      },
+      {
+				path: '/userCenter',
+				name: 'UserCenter',
+				meta: {
+					title: "个人中心"
+				},
+				component: () => import('@/views/UserCenter.vue')
+			},
     ]
   }
 ]

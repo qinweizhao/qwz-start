@@ -42,7 +42,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return 用户名，密码，状态
      */
     @Override
-    public SysUserDetails selectUserInfoByUsername(String username) {
+    public SysUserDetails getUserDetailsInfoByUsername(String username) {
         return this.baseMapper.selectUserInfoByUsername(username);
     }
 

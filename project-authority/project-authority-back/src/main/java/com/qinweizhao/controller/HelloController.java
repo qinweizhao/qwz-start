@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-    @GetMapping("/hello")
+    @GetMapping("/home")
     public CommonResponse hello() {
         return CommonResponse.success("hello world");
     }

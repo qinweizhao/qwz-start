@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * @since 2021-09-25
  */
 @RestController
-@RequestMapping("/sys-role")
+@RequestMapping("/sys/role")
 public class SysRoleController extends BaseController {
 
     @Resource
