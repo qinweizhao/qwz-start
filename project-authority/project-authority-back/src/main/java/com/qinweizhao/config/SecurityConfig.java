@@ -7,6 +7,7 @@ import com.qinweizhao.handler.MyAuthenticationEntryPoint;
 import com.qinweizhao.handler.MyLogoutSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
@@ -44,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
     private JwtAuthenticationFilter jwtAuthenticationFilter;
+
 
     /**
      * 密码编码器
@@ -119,10 +121,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 禁用 csrf
                 .csrf().disable()
 
-                // 禁用 cors
-                .cors().disable()
+                // 开启对 cors 的支持
+                .cors()
 
                 // 禁用 session
+                .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
@@ -135,6 +138,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 拦截规则
                 .and()
                 .authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS)
+                .permitAll()
                 .anyRequest()
                 .authenticated()
 
