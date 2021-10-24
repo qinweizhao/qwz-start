@@ -1,10 +1,10 @@
 package com.qinweizhao.config;
 
-import com.qinweizhao.filter.JwtAuthenticationFilter;
-import com.qinweizhao.filter.MyAuthenticationFilter;
-import com.qinweizhao.handler.MyAccessDeniedHandler;
-import com.qinweizhao.handler.MyAuthenticationEntryPoint;
-import com.qinweizhao.handler.MyLogoutSuccessHandler;
+import com.qinweizhao.common.security.filter.JwtAuthenticationFilter;
+import com.qinweizhao.common.security.filter.MyAuthenticationFilter;
+import com.qinweizhao.common.security.handler.MyAccessDeniedHandler;
+import com.qinweizhao.common.security.handler.MyAuthenticationEntryPoint;
+import com.qinweizhao.common.security.handler.MyLogoutSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

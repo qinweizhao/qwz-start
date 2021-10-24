@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 2021/9/26
  */
 @Configuration
-@MapperScan("com.qinweizhao.mapper")
+@MapperScan("com.qinweizhao.modules.sys.mapper")
 public class MyBatisPlusConfig {
 
     /**
