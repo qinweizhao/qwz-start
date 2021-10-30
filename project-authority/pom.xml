@@ -13,7 +13,7 @@
     <description>project-authority</description>
 
     <modules>
-        <module>project-authority-back</module>
+        <module>project-login-back</module>
     </modules>
 
 </project>

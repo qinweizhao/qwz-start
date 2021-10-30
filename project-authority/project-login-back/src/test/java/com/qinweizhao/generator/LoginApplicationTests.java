@@ -16,7 +16,7 @@ import java.io.OutputStream;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @SpringBootTest
-class AuthorityApplicationTests {
+class LoginApplicationTests {
 
     @Resource
     BCryptPasswordEncoder bCryptPasswordEncoder;

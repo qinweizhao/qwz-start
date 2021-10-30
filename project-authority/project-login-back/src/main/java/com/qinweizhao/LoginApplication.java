@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author YVKG
  */
 @SpringBootApplication
-public class AuthorityApplication {
+public class LoginApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AuthorityApplication.class, args);
+        SpringApplication.run(LoginApplication.class, args);
     }
 
 }
