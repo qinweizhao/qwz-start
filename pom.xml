@@ -9,8 +9,8 @@
 
     <packaging>pom</packaging>
 
-    <name>qwz-project-authority</name>
-    <description>project-authority</description>
+    <name>qwz-authority</name>
+    <description>Authority management system</description>
 
     <modules>
         <module>project-authority-back</module>
