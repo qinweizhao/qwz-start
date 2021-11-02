@@ -4,16 +4,16 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.qinweizhao</groupId>
-    <artifactId>qwz-project</artifactId>
+    <artifactId>project-authority</artifactId>
     <version>0.0.1</version>
 
     <packaging>pom</packaging>
 
-    <name>qwz-project</name>
-    <description>project-parents</description>
+    <name>qwz-project-authority</name>
+    <description>project-authority</description>
 
     <modules>
-        <module>project-authority</module>
+        <module>project-authority-back</module>
     </modules>
 
 </project>

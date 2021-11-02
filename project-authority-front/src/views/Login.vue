@@ -100,7 +100,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("../assets/images/login-background.jpg");
+  background-image: url("src/assets/images/login-background.jpg");
   background-size: cover;
   height: 100%;
 }
