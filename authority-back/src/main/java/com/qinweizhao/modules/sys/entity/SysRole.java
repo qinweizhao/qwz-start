@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
  * @author qinweizhao
  * @since 2021-09-25
  */
-public class SysRole extends BaseEntity {
+public class SysRole {
 
     private static final long serialVersionUID = 1L;
 

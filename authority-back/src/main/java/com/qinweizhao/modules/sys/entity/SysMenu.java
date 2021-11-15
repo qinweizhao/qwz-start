@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
  * @author qinweizhao
  * @since 2021-09-25
  */
-public class SysMenu extends BaseEntity {
+public class SysMenu {
 
     private static final long serialVersionUID = 1L;
 
@@ -50,21 +50,6 @@ public class SysMenu extends BaseEntity {
      * 组件路径
      */
     private String component;
-
-    /**
-     * 是否为外链（0是 1否）
-     */
-    private Integer isFrame;
-
-    /**
-     * 是否缓存（0缓存 1不缓存）
-     */
-    private Integer isCache;
-
-    /**
-     * 菜单状态（0显示 1隐藏）
-     */
-    private String visible;
 
     /**
      * 菜单状态（0正常 1停用）
@@ -133,30 +118,6 @@ public class SysMenu extends BaseEntity {
         this.component = component;
     }
 
-    public Integer getIsFrame() {
-        return isFrame;
-    }
-
-    public void setIsFrame(Integer isFrame) {
-        this.isFrame = isFrame;
-    }
-
-    public Integer getIsCache() {
-        return isCache;
-    }
-
-    public void setIsCache(Integer isCache) {
-        this.isCache = isCache;
-    }
-
-    public String getVisible() {
-        return visible;
-    }
-
-    public void setVisible(String visible) {
-        this.visible = visible;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -183,9 +144,6 @@ public class SysMenu extends BaseEntity {
                 ", path='" + path + '\'' +
                 ", icon='" + icon + '\'' +
                 ", component='" + component + '\'' +
-                ", isFrame=" + isFrame +
-                ", isCache=" + isCache +
-                ", visible='" + visible + '\'' +
                 ", status='" + status + '\'' +
                 ", permission='" + permission + '\'' +
                 '}';

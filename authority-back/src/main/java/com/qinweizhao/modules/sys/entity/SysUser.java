@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * @author qinweizhao
  * @since 2021-09-25
  */
-public class SysUser extends BaseEntity {
+public class SysUser {
 
     private static final long serialVersionUID = 1L;
 
@@ -39,21 +39,6 @@ public class SysUser extends BaseEntity {
     private String nickName;
 
     /**
-     * 用户邮箱
-     */
-    private String email;
-
-    /**
-     * 手机号码
-     */
-    private String phone;
-
-    /**
-     * 用户性别（0男 1女 2未知）
-     */
-    private String sex;
-
-    /**
      * 头像地址
      */
     private String avatar;
@@ -62,11 +47,6 @@ public class SysUser extends BaseEntity {
      * 帐号状态（0正常 1停用）
      */
     private String status;
-
-    /**
-     * 最后登录时间
-     */
-    private LocalDateTime loginDate;
 
 
     public Long getUserId() {
@@ -101,29 +81,6 @@ public class SysUser extends BaseEntity {
         this.nickName = nickName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
 
     public String getAvatar() {
         return avatar;
@@ -141,14 +98,6 @@ public class SysUser extends BaseEntity {
         this.status = status;
     }
 
-    public LocalDateTime getLoginDate() {
-        return loginDate;
-    }
-
-    public void setLoginDate(LocalDateTime loginDate) {
-        this.loginDate = loginDate;
-    }
-
     @Override
     public String toString() {
         return "SysUser{" +
@@ -156,12 +105,8 @@ public class SysUser extends BaseEntity {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", nickName='" + nickName + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", sex='" + sex + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", status='" + status + '\'' +
-                ", loginDate=" + loginDate +
                 '}';
     }
 }
