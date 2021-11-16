@@ -2,7 +2,7 @@ package com.qinweizhao.modules.sys.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.qinweizhao.modules.sys.entity.SysUser;
-import com.qinweizhao.modules.sys.entity.SysUserDetails;
+import com.qinweizhao.common.security.entity.SysUserDetails;
 
 import java.io.IOException;
 
@@ -30,7 +30,7 @@ public interface SysUserService extends IService<SysUser> {
      * @param userId 用户Id
      * @return 权限集合
      */
-    String selectAuthorityByUserId(String userId);
+    String getAuthorityByUserId(String userId);
 
     /**
      * 获取验证码

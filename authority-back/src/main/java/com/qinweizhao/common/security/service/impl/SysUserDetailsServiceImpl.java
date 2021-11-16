@@ -1,6 +1,6 @@
-package com.qinweizhao.modules.sys.service.impl;
+package com.qinweizhao.common.security.service.impl;
 
-import com.qinweizhao.modules.sys.entity.SysUserDetails;
+import com.qinweizhao.common.security.entity.SysUserDetails;
 import com.qinweizhao.modules.sys.service.SysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +31,7 @@ public class SysUserDetailsServiceImpl implements UserDetailsService {
         if (accountInfo == null) {
             throw new UsernameNotFoundException("用户名输入错误");
         }
-        String authority = sysUserService.selectAuthorityByUserId(accountInfo.getUserId());
+        String authority = sysUserService.getAuthorityByUserId(accountInfo.getUserId());
         log.info("当前用户拥有的权限有{}", authority);
         accountInfo.setAuthorities(AuthorityUtils.commaSeparatedStringToAuthorityList(authority));
         return accountInfo;

@@ -51,7 +51,6 @@ public class SysUserController extends BaseController {
                 .put("id", sysUser.getUserId())
                 .put("username", sysUser.getUsername())
                 .put("avatar", sysUser.getAvatar())
-                .put("created", sysUser.getCreateBy())
                 .map()
         );
     }

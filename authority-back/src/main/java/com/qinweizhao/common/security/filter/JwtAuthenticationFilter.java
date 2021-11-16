@@ -1,7 +1,7 @@
 package com.qinweizhao.common.security.filter;
 
 import cn.hutool.core.util.StrUtil;
-import com.qinweizhao.modules.sys.entity.SysUserDetails;
+import com.qinweizhao.common.security.entity.SysUserDetails;
 import com.qinweizhao.modules.sys.service.SysUserService;
 import com.qinweizhao.common.util.JwtUtils;
 import io.jsonwebtoken.Claims;
@@ -56,7 +56,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         String username = claim.getSubject();
         SysUserDetails sysUserDetails = sysUserService.getUserDetailsInfoByUsername(username);
-        String authority = sysUserService.selectAuthorityByUserId(sysUserDetails.getUserId());
+        String authority = sysUserService.getAuthorityByUserId(sysUserDetails.getUserId());
         log.info("当前用户拥有的权限有{}", authority);
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, null, AuthorityUtils.commaSeparatedStringToAuthorityList(authority));
         SecurityContextHolder.getContext().setAuthentication(token);

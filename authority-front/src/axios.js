@@ -1,4 +1,4 @@
-import axios from "authority-front/src/axios";
+import axios from "axios";
 import Element from 'element-ui';
 //import devServer from "../vue.config.js.bak"
 

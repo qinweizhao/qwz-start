@@ -1,4 +1,4 @@
-package com.qinweizhao.modules.sys.entity;
+package com.qinweizhao.common.security.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

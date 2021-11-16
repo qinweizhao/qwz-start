@@ -13,6 +13,7 @@
 
     <modules>
         <module>authority-back</module>
+        <module>authority-front</module>
     </modules>
 
 </project>

@@ -5,14 +5,14 @@
       text-color="#fff"
       active-text-color="#ffd04b"
   >
-    <!-- <router-link to="/index">
+    <router-link to="/index">
       <el-menu-item index="Index">
         <template>
           <i class="el-icon-s-home"></i>
           <span slot="title">首页</span>
         </template>
       </el-menu-item>
-    </router-link> -->
+    </router-link>
 
     <el-submenu
         default-active="Index"

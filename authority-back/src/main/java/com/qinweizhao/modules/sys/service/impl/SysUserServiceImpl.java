@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.qinweizhao.common.entity.Constant;
 import com.qinweizhao.modules.sys.entity.SysUser;
-import com.qinweizhao.modules.sys.entity.SysUserDetails;
+import com.qinweizhao.common.security.entity.SysUserDetails;
 import com.qinweizhao.modules.sys.mapper.SysUserMapper;
 import com.qinweizhao.modules.sys.service.SysUserService;
 import com.qinweizhao.common.util.GuavaCacheUtils;
@@ -33,7 +33,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
 
     @Resource
-    DefaultKaptcha defaultKaptcha;
+    private DefaultKaptcha defaultKaptcha;
 
     /**
      * 通过用户名查询用户
@@ -53,7 +53,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return 权限集合
      */
     @Override
-    public String selectAuthorityByUserId(String userId) {
+    public String getAuthorityByUserId(String userId) {
         String authority = "";
         Set<String> roleSet = this.baseMapper.selectRoleByUserId(userId);
         if (!roleSet.isEmpty()) {

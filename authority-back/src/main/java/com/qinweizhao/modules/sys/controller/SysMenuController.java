@@ -37,7 +37,7 @@ public class SysMenuController extends BaseController {
     @GetMapping("/nav")
     public CommonResponse nav(Principal principal) {
         SysUser sysUser = sysUserService.getSysUserByUsername(principal.getName());
-        String authority = sysUserService.selectAuthorityByUserId(sysUser.getUserId().toString());
+        String authority = sysUserService.getAuthorityByUserId(sysUser.getUserId().toString());
         List<SysMenuDTO> menuDTO = sysMenuService.getCurrentUserNavigation(sysUser.getUserId());
         return CommonResponse.success(MapUtil.builder()
                 .put("Authority", authority)

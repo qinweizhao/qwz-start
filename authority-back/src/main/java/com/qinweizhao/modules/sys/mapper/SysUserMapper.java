@@ -2,7 +2,7 @@ package com.qinweizhao.modules.sys.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.qinweizhao.modules.sys.entity.SysUser;
-import com.qinweizhao.modules.sys.entity.SysUserDetails;
+import com.qinweizhao.common.security.entity.SysUserDetails;
 
 import java.util.Set;
 
