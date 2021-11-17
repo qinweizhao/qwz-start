@@ -57,7 +57,7 @@ router.beforeEach((to, from, next) => {
         next({path: '/login'})
         //next()
     } else if (token && !hasRoutes) {
-        axios.get("/sys/menu/mav", {
+        axios.get("/sys/menu/nav", {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
@@ -78,7 +78,7 @@ router.beforeEach((to, from, next) => {
                         let route = menuToRoute(e);
                         // 把路由添加到路由管理中
                         if (route) {
-                            newRoutes[0].children.push(route)
+                            newRoutes[1].children.push(route)
                         }
                     })
                 }
@@ -108,11 +108,11 @@ const menuToRoute = (menu) => {
     }
     // 复制属性  
     let route = {
-        name: menu.name,
+        name: menu.menuName,
         path: menu.path,
         meta: {
             icon: menu.icon,
-            title: menu.title
+            title: menu.menuName
         }
     }
     route.component = () => import('@/views/' + menu.component + '.vue')

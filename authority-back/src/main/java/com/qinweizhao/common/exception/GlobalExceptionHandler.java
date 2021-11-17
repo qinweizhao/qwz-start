@@ -1,6 +1,6 @@
 package com.qinweizhao.common.exception;
 
-import com.qinweizhao.common.entity.CommonResponse;
+import com.qinweizhao.common.entity.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -28,9 +28,9 @@ public class GlobalExceptionHandler {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IOException.class)
-    public CommonResponse exception(IOException e) {
+    public R exception(IOException e) {
         log.error("全局异常===》IOException异常：", e);
-        return CommonResponse.failure(e.getMessage());
+        return R.failure(e.getMessage());
     }
 
     /**
@@ -41,8 +41,8 @@ public class GlobalExceptionHandler {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(Exception.class)
-    public CommonResponse exception(Exception e) {
+    public R exception(Exception e) {
         log.error("全局异常===》Exception异常：", e);
-        return CommonResponse.failure(e.getMessage());
+        return R.failure(e.getMessage());
     }
 }

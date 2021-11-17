@@ -2,7 +2,7 @@ package com.qinweizhao.modules.sys.controller;
 
 
 import cn.hutool.core.map.MapUtil;
-import com.qinweizhao.common.entity.CommonResponse;
+import com.qinweizhao.common.entity.R;
 import com.qinweizhao.modules.sys.entity.SysUser;
 import com.qinweizhao.modules.sys.service.SysUserService;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +34,8 @@ public class SysUserController extends BaseController {
      * @throws IOException e
      */
     @GetMapping("/captcha")
-    public CommonResponse captcha() throws IOException {
-        return CommonResponse.success(sysUserService.getCaptcha());
+    public R captcha() throws IOException {
+        return R.success(sysUserService.getCaptcha());
     }
 
     /**
@@ -45,9 +45,9 @@ public class SysUserController extends BaseController {
      * @return r
      */
     @GetMapping("/info")
-    public CommonResponse info(Principal principal) {
+    public R info(Principal principal) {
         SysUser sysUser = sysUserService.getSysUserByUsername(principal.getName());
-        return CommonResponse.success(MapUtil.builder()
+        return R.success(MapUtil.builder()
                 .put("id", sysUser.getUserId())
                 .put("username", sysUser.getUsername())
                 .put("avatar", sysUser.getAvatar())
@@ -56,14 +56,14 @@ public class SysUserController extends BaseController {
     }
 
     @DeleteMapping("/delete")
-    public CommonResponse delete(String id) {
+    public R delete(String id) {
         boolean b = sysUserService.removeById(id);
-        return getCommonResponse(b);
+        return getR(b);
     }
 
     @PutMapping("/update")
-    public CommonResponse update(SysUser sysUser) {
+    public R update(SysUser sysUser) {
         boolean b = sysUserService.updateById(sysUser);
-        return getCommonResponse(b);
+        return getR(b);
     }
 }

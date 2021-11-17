@@ -30,7 +30,7 @@ public interface SysUserService extends IService<SysUser> {
      * @param userId 用户Id
      * @return 权限集合
      */
-    String getAuthorityByUserId(String userId);
+    String getAuthorityByUserId(Long userId);
 
     /**
      * 获取验证码

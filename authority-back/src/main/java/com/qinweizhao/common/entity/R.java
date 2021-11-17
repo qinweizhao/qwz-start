@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author qinweizhao
  * @since 2021/9/25
  */
-public class CommonResponse {
+public class R {
 
     /**
      * 状态码
@@ -24,38 +24,38 @@ public class CommonResponse {
      */
     private Object data;
 
-    public CommonResponse() {
+    public R() {
 
     }
 
-    public CommonResponse(int code, String message, Object data) {
+    public R(int code, String message, Object data) {
         this.code = code;
         this.message = message;
         this.data = data;
     }
 
-    public static CommonResponse success(Object data) {
+    public static R success(Object data) {
         return success(HttpServletResponse.SC_OK, "操作成功", data);
     }
 
-    public static CommonResponse success(String message, Object data) {
+    public static R success(String message, Object data) {
         return success(HttpServletResponse.SC_OK, message, data);
     }
 
-    public static CommonResponse success(int code, String message, Object data) {
-        return new CommonResponse(code, message, data);
+    public static R success(int code, String message, Object data) {
+        return new R(code, message, data);
     }
 
-    public static CommonResponse failure(String message) {
+    public static R failure(String message) {
         return success(HttpServletResponse.SC_BAD_REQUEST, message, null);
     }
 
-    public static CommonResponse failure(String message, Object data) {
+    public static R failure(String message, Object data) {
         return success(HttpServletResponse.SC_BAD_REQUEST, message, data);
     }
 
-    public static CommonResponse failure(int code, String message, Object data) {
-        return new CommonResponse(code, message, data);
+    public static R failure(int code, String message, Object data) {
+        return new R(code, message, data);
     }
 
     public int getCode() {

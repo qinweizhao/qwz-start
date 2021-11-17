@@ -1,6 +1,6 @@
 package com.qinweizhao.modules.sys.controller;
 
-import com.qinweizhao.common.entity.CommonResponse;
+import com.qinweizhao.common.entity.R;
 
 /**
  * @author qinweizhao
@@ -9,7 +9,7 @@ import com.qinweizhao.common.entity.CommonResponse;
 public class BaseController {
 
 
-    public CommonResponse getCommonResponse(boolean b) {
-        return b ? CommonResponse.success("成功") : CommonResponse.failure("失败");
+    public R getR(boolean b) {
+        return b ? R.success("成功") : R.failure("失败");
     }
 }

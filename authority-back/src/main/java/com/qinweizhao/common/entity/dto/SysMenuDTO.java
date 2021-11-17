@@ -1,12 +1,16 @@
 package com.qinweizhao.common.entity.dto;
 
-import java.util.ArrayList;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import java.util.List;
 
 /**
  * @author qinweizhao
  * @since 2021/10/15
  */
+@Data
+@EqualsAndHashCode
 public class SysMenuDTO {
 
     private Long menuId;
@@ -16,6 +20,8 @@ public class SysMenuDTO {
     private String icon;
 
     private String path;
+
+    private Long parentId;
 
     private String component;
 
@@ -54,6 +60,14 @@ public class SysMenuDTO {
         this.path = path;
     }
 
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
     public String getComponent() {
         return component;
     }
@@ -68,17 +82,5 @@ public class SysMenuDTO {
 
     public void setChildren(List<SysMenuDTO> children) {
         this.children = children;
-    }
-
-    @Override
-    public String toString() {
-        return "SysMenuDTO{" +
-                "menuId=" + menuId +
-                ", menuName='" + menuName + '\'' +
-                ", icon='" + icon + '\'' +
-                ", path='" + path + '\'' +
-                ", component='" + component + '\'' +
-                ", children=" + children +
-                '}';
     }
 }

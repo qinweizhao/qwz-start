@@ -5,7 +5,7 @@
       text-color="#fff"
       active-text-color="#ffd04b"
   >
-    <router-link to="/index">
+    <router-link to="/index" @click="selectMenu({name: 'Index', title: '首页'})">
       <el-menu-item index="Index">
         <template>
           <i class="el-icon-s-home"></i>
@@ -16,19 +16,19 @@
 
     <el-submenu
         default-active="Index"
-        :index="menu.name"
+        :index="menu.menuName"
         v-for="menu in menuList"
-        :key="menu.name"
+        :key="menu.menuName"
     >
       <template slot="title">
-        <i :class="menu.icon"></i> <span>{{ menu.title }}</span>
+        <i :class="menu.icon"></i> <span>{{ menu.menuName }}</span>
       </template>
       <el-menu-item-group>
         <router-link :to="item.path" v-for="item in menu.children" :key="item.name">
-          <el-menu-item :index="item.name">
+          <el-menu-item :index="item.menuName">
             <template slot="title">
               <i :class="item.icon"></i>
-              <span slot="title">{{ item.title }}</span>
+              <span slot="title">{{ item.menuName }}</span>
             </template>
           </el-menu-item>
         </router-link>
@@ -40,58 +40,24 @@
 <script>
 export default {
   name: "SideMenu",
-  data() {
-    return {
-      menuList: [
-        {
-          name: "SysManga",
-          title: "系统管理",
-          icon: "el-icon-s-operation",
-          path: "",
-          component: "",
-          children: [
-            {
-              name: "SysUser",
-              title: "用户管理",
-              icon: "el-icon-s-custom",
-              path: "/sys/users",
-              children: [],
-            },
-            {
-              name: "SysUser",
-              title: "角色管理",
-              icon: "el-icon-s-custom",
-              path: "/sys/users",
-              children: [],
-            },
-            {
-              name: "SysUser",
-              title: "菜单管理",
-              icon: "el-icon-s-custom",
-              path: "/sys/users",
-              children: [],
-            },
-          ],
-        },
-        {
-          name: "SysTools",
-          title: "系统工具",
-          icon: "el-icon-s-tools",
-          path: "",
-          children: [
-            {
-              name: "SysDict",
-              title: "数字字典",
-              icon: "el-icon-s-order",
-              path: "/sys/dicts",
-              children: [],
-            },
-          ],
-        },
-      ],
-    };
+  data(){
+    return{
+
+    }
   },
-};
+  computed:{
+    menuList:{
+      get(){
+        return this.$store.state.menus.menuList
+      }
+    }
+  },
+  methods:{
+    selectMenu(item){
+      this.$store.commit("addTab", item)
+    }
+  }
+}      
 </script>
 
 <style scoped>

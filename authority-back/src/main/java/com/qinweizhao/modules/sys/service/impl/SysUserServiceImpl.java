@@ -53,7 +53,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return 权限集合
      */
     @Override
-    public String getAuthorityByUserId(String userId) {
+    public String getAuthorityByUserId(Long userId) {
         String authority = "";
         Set<String> roleSet = this.baseMapper.selectRoleByUserId(userId);
         if (!roleSet.isEmpty()) {

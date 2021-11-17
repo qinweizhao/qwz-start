@@ -3,7 +3,7 @@ package com.qinweizhao.modules.sys.controller;
 
 import cn.hutool.core.map.MapUtil;
 import com.qinweizhao.common.entity.dto.SysMenuDTO;
-import com.qinweizhao.common.entity.CommonResponse;
+import com.qinweizhao.common.entity.R;
 import com.qinweizhao.modules.sys.entity.SysUser;
 import com.qinweizhao.modules.sys.service.SysMenuService;
 import com.qinweizhao.modules.sys.service.SysUserService;
@@ -35,13 +35,13 @@ public class SysMenuController extends BaseController {
     private SysUserService sysUserService;
 
     @GetMapping("/nav")
-    public CommonResponse nav(Principal principal) {
+    public R nav(Principal principal) {
         SysUser sysUser = sysUserService.getSysUserByUsername(principal.getName());
-        String authority = sysUserService.getAuthorityByUserId(sysUser.getUserId().toString());
-        List<SysMenuDTO> menuDTO = sysMenuService.getCurrentUserNavigation(sysUser.getUserId());
-        return CommonResponse.success(MapUtil.builder()
+        String authority = sysUserService.getAuthorityByUserId(sysUser.getUserId());
+        List<SysMenuDTO> menuDTOList = sysMenuService.listMenuDTO(sysUser.getUserId());
+        return R.success(MapUtil.builder()
                 .put("Authority", authority)
-                .put("nav", menuDTO)
+                .put("nav", menuDTOList)
                 .map()
         );
     }

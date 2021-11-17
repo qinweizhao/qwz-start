@@ -2,7 +2,7 @@ package com.qinweizhao.common.security.filter;
 
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.qinweizhao.common.entity.CommonResponse;
+import com.qinweizhao.common.entity.R;
 import com.qinweizhao.common.entity.Constant;
 import com.qinweizhao.common.exception.CaptchaException;
 import com.qinweizhao.common.enums.HttpMethod;
@@ -116,7 +116,7 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         // 生成 token
         JwtUtils jwtUtils = SpringUtils.getBean(JwtUtils.class);
         String token = jwtUtils.generateToken(authResult.getName());
-        CommonResponse success = CommonResponse.success(token);
+        R success = R.success(token);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         PrintWriter writer = response.getWriter();
@@ -130,9 +130,9 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         if (log.isDebugEnabled()) {
             log.debug("登录失败");
         }
-        CommonResponse failure = new CommonResponse();
+        R failure = new R();
         if (failed instanceof CaptchaException) {
-            failure = CommonResponse.failure("验证码错误");
+            failure = R.failure("验证码错误");
         }
         response.setContentType("application/json;charset=UTF-8");
         PrintWriter writer = response.getWriter();

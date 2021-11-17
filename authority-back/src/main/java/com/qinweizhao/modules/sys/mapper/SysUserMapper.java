@@ -30,7 +30,7 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @param userId 用户 Id
      * @return 权限集合
      */
-    Set<String> selectPermissionByUserId(String userId);
+    Set<String> selectPermissionByUserId(Long userId);
 
     /**
      * 通过用户 Id 查询拥有的角色
@@ -38,7 +38,7 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @param userId 用户 Id
      * @return 角色集合
      */
-    Set<String> selectRoleByUserId(String userId);
+    Set<String> selectRoleByUserId(Long userId);
 
 
     /**

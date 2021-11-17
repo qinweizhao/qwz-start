@@ -1,7 +1,7 @@
 package com.qinweizhao.common.security.handler;
 
 import cn.hutool.json.JSONUtil;
-import com.qinweizhao.common.entity.CommonResponse;
+import com.qinweizhao.common.entity.R;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -29,7 +29,7 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
         }
         httpServletResponse.setContentType("application/json;charset=UTF-8");
         ServletOutputStream outputStream = httpServletResponse.getOutputStream();
-        CommonResponse result = CommonResponse.success("退出成功");
+        R result = R.success("退出成功");
         outputStream.write(JSONUtil.toJsonStr(result).getBytes(StandardCharsets.UTF_8));
         outputStream.flush();
         outputStream.close();

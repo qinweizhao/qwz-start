@@ -1,6 +1,6 @@
 package com.qinweizhao.common.security.handler;
 
-import com.qinweizhao.common.entity.CommonResponse;
+import com.qinweizhao.common.entity.R;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class MyAccessDeniedHandler implements AccessDeniedHandler {
         httpServletResponse.setContentType("application/json; charset=UTF-8");
         httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
         ServletOutputStream outputStream = httpServletResponse.getOutputStream();
-        CommonResponse response = CommonResponse.failure(String.valueOf(HttpServletResponse.SC_FORBIDDEN), "拒绝访问");
+        R response = R.failure(String.valueOf(HttpServletResponse.SC_FORBIDDEN), "拒绝访问");
         outputStream.write(response.toString().getBytes(StandardCharsets.UTF_8));
         outputStream.flush();
         outputStream.close();

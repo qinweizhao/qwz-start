@@ -16,11 +16,12 @@ import java.util.List;
  */
 public interface SysMenuService extends IService<SysMenu> {
 
+
     /**
      * 获取当前用户的菜单导航
      *
      * @param userId 用户id
      * @return list
      */
-    List<SysMenuDTO> getCurrentUserNavigation(Long userId);
+    List<SysMenuDTO> listMenuDTO(Long userId);
 }

@@ -1,7 +1,7 @@
 package com.qinweizhao.common.security.handler;
 
 import cn.hutool.json.JSONUtil;
-import com.qinweizhao.common.entity.CommonResponse;
+import com.qinweizhao.common.entity.R;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class MyAuthenticationEntryPoint implements AuthenticationEntryPoint {
         httpServletResponse.setContentType("application/json;charset=UTF-8");
         ServletOutputStream outputStream = httpServletResponse.getOutputStream();
 
-        CommonResponse response = CommonResponse.failure("登录失败");
+        R response = R.failure("登录失败");
 
         outputStream.write(JSONUtil.toJsonStr(response).getBytes(StandardCharsets.UTF_8));
 

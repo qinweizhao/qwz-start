@@ -21,7 +21,7 @@ public class SysUserDetails implements UserDetails {
     /**
      * 用户编号
      */
-    private String userId;
+    private Long userId;
 
     /**
      * 用户账号
@@ -72,11 +72,11 @@ public class SysUserDetails implements UserDetails {
         this.username = username;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
