@@ -1,18 +1,17 @@
 <template>
   <el-container>
     <el-aside width="200px">
-      <SideMenu/>
+      <SideMenu />
     </el-aside>
     <el-container>
       <el-header style="height: 55px">
-
         <Strong>Authority</Strong>
 
         <div class="header-avatar block">
           <el-avatar
-              :src="userInfo.avatar"
-              class="el-avatar"
-              size="medium"
+            :src="userInfo.avatar"
+            class="el-avatar"
+            size="medium"
           ></el-avatar>
           <el-dropdown>
             <span class="el-dropdown-link">
@@ -30,7 +29,10 @@
       </el-header>
       <el-container>
         <el-main>
-          <router-view></router-view>
+          <Tabs />
+          <div style="margin: 0 15px">
+            <router-view />
+          </div>
         </el-main>
       </el-container>
     </el-container>
@@ -38,8 +40,8 @@
 </template>
 
 <script>
-import SideMenu from "./inc/SideMenu.vue"
-
+import SideMenu from "./inc/SideMenu.vue";
+import Tabs from "./inc/Tabs.vue";
 export default {
   name: "Home",
   data() {
@@ -52,7 +54,8 @@ export default {
     };
   },
   components: {
-    SideMenu
+    SideMenu,
+    Tabs,
   },
   created() {
     this.getUserInfo();
@@ -71,7 +74,7 @@ export default {
 
         this.$store.commit("resetState");
 
-        this.$router.push("/");
+        this.$router.push("/login");
       });
     },
   },
@@ -108,7 +111,6 @@ export default {
 .el-aside {
   background-color: #d3dce6;
   color: #333;
-  text-align: center;
   line-height: 200px;
 }
 
@@ -116,19 +118,13 @@ export default {
   background-color: #e9eef3;
   color: #333;
   text-align: center;
-  line-height: 160px;
 }
 
 body > .el-container {
   margin-bottom: 40px;
 }
 
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-  line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-  line-height: 320px;
+a {
+  text-decoration: none;
 }
 </style>
