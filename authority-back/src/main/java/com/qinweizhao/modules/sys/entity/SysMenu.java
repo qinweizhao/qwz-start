@@ -1,7 +1,13 @@
 package com.qinweizhao.modules.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -11,6 +17,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
  * @author qinweizhao
  * @since 2021-09-25
  */
+@Data
+@EnableConfigurationProperties
 public class SysMenu {
 
     private static final long serialVersionUID = 1L;
@@ -62,90 +70,10 @@ public class SysMenu {
     private String permission;
 
 
-    public Long getMenuId() {
-        return menuId;
-    }
+    /**
+     * 子菜单
+     */
+    @TableField(exist = false)
+    private List<SysMenu> children = new ArrayList<>();
 
-    public void setMenuId(Long menuId) {
-        this.menuId = menuId;
-    }
-
-    public String getMenuName() {
-        return menuName;
-    }
-
-    public void setMenuName(String menuName) {
-        this.menuName = menuName;
-    }
-
-    public String getMenuType() {
-        return menuType;
-    }
-
-    public void setMenuType(String menuType) {
-        this.menuType = menuType;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public String getComponent() {
-        return component;
-    }
-
-    public void setComponent(String component) {
-        this.component = component;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getPermission() {
-        return permission;
-    }
-
-    public void setPermission(String permission) {
-        this.permission = permission;
-    }
-
-    @Override
-    public String toString() {
-        return "SysMenu{" +
-                "menuId=" + menuId +
-                ", menuName='" + menuName + '\'' +
-                ", menuType='" + menuType + '\'' +
-                ", parentId=" + parentId +
-                ", path='" + path + '\'' +
-                ", icon='" + icon + '\'' +
-                ", component='" + component + '\'' +
-                ", status='" + status + '\'' +
-                ", permission='" + permission + '\'' +
-                '}';
-    }
 }

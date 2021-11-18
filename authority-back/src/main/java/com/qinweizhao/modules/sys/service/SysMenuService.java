@@ -24,4 +24,12 @@ public interface SysMenuService extends IService<SysMenu> {
      * @return list
      */
     List<SysMenuDTO> listMenuDTO(Long userId);
+
+    /**
+     * 获取属性菜单
+     *
+     * @return List<SysMenu>
+     */
+    List<SysMenu> tree();
+
 }

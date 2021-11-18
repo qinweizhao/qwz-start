@@ -1,7 +1,13 @@
 package com.qinweizhao.modules.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -11,6 +17,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
  * @author qinweizhao
  * @since 2021-09-25
  */
+@Data
+@EqualsAndHashCode
 public class SysRole {
 
     private static final long serialVersionUID = 1L;
@@ -36,45 +44,9 @@ public class SysRole {
      */
     private String status;
 
-    public Long getRoleId() {
-        return roleId;
-    }
 
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
+    @TableField(exist = false)
+    private List<Long> menuIds = new ArrayList<>();
 
-    public String getRoleName() {
-        return roleName;
-    }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
-
-    public String getRoleKey() {
-        return roleKey;
-    }
-
-    public void setRoleKey(String roleKey) {
-        this.roleKey = roleKey;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "SysRole{" +
-                "roleId=" + roleId +
-                ", roleName='" + roleName + '\'' +
-                ", roleKey='" + roleKey + '\'' +
-                ", status='" + status + '\'' +
-                '}';
-    }
 }

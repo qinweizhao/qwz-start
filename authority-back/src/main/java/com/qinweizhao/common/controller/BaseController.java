@@ -1,4 +1,4 @@
-package com.qinweizhao.modules.sys.controller;
+package com.qinweizhao.common.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qinweizhao.common.entity.R;
@@ -16,22 +16,22 @@ import javax.servlet.http.HttpServletRequest;
 public class BaseController {
 
     @Autowired
-    HttpServletRequest request;
+    protected HttpServletRequest request;
 
     @Autowired
-    SysUserService sysUserService;
+    protected SysUserService sysUserService;
 
     @Autowired
-    SysRoleService sysRoleService;
+    protected SysRoleService sysRoleService;
 
     @Autowired
-    SysMenuService sysMenuService;
+    protected SysMenuService sysMenuService;
 
     @Autowired
-    SysUserRoleService sysUserRoleService;
+    protected SysUserRoleService sysUserRoleService;
 
     @Autowired
-    SysRoleMenuService sysRoleMenuService;
+    protected SysRoleMenuService sysRoleMenuService;
 
     /**
      * 获取页面

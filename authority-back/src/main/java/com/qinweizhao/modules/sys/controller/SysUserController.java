@@ -2,6 +2,7 @@ package com.qinweizhao.modules.sys.controller;
 
 
 import cn.hutool.core.map.MapUtil;
+import com.qinweizhao.common.controller.BaseController;
 import com.qinweizhao.common.entity.Constant;
 import com.qinweizhao.common.entity.R;
 import com.qinweizhao.common.entity.dto.PassDto;
