@@ -3,6 +3,8 @@ package com.qinweizhao.modules.sys.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.qinweizhao.modules.sys.entity.SysRole;
 
+import java.util.List;
+
 /**
  * <p>
  * 角色信息表 服务类

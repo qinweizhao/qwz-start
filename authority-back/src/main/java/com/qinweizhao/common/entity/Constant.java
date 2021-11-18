@@ -6,6 +6,8 @@ package com.qinweizhao.common.entity;
  */
 public class Constant {
 
+
+
     private Constant() {
 
     }
@@ -13,17 +15,27 @@ public class Constant {
     /**
      * 用户名
      */
-    public static final String LOGIN_USER = "username";
+    public static final String LOGIN_USER_KEY = "username";
 
     /**
      * 密码
      */
-    public static final String LOGIN_PASS = "password";
+    public static final String LOGIN_PASS_KEY = "password";
 
     /**
      * 验证码
      */
-    public static final String LOGIN_CODE = "captcha";
+    public static final String LOGIN_CODE_KEY = "captcha";
 
+
+    /**
+     * 默认密码
+     */
+    public static final String DEFAULT_PASSWORD = "888888";
+
+    /**
+     * 默认头像
+     */
+    public static final String DEFAULT_AVATAR = "https://cdn.jsdelivr.net/gh/qinhua/halo-theme-joe2.0@master/source/svg/spinner-preloader.svg";
 
 }

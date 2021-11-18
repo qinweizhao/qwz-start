@@ -1,5 +1,6 @@
 package com.qinweizhao.modules.sys.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.qinweizhao.modules.sys.entity.SysUser;
 import com.qinweizhao.common.security.entity.SysUserDetails;
@@ -47,4 +48,26 @@ public interface SysUserService extends IService<SysUser> {
      * @return SysUser
      */
     SysUser getSysUserByUsername(String name);
+
+    /**
+     * 用户列表（分页）
+     * @param page 分页
+     * @param username 用户名
+     * @return Page<SysUser>
+     */
+    Page<SysUser> pageSysUsers(Page<SysUser> page, String username);
+
+    /**
+     * 通过用户 id 查询用户
+     * @param id id
+     * @return SysUser
+     */
+    SysUser getInfoById(Long id);
+
+    /**
+     * 删除用户
+     * @param ids ids
+     * @return b
+     */
+    boolean removeSysUser(Long[] ids);
 }

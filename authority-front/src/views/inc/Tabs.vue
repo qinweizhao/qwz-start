@@ -43,30 +43,33 @@ export default {
   },
   methods: {
     removeTab(targetName) {
-      let tabs = this.editableTabs;
-      let activeName = this.editableTabsValue;
-      if (activeName === "Index") {
-        return;
-      }
-      if (activeName === targetName) {
-        tabs.array.forEach((tab, index) => {
-          if (tab.name === targetName) {
-            let nextTable = tabs[index + 1] || tabs[index - 1];
-            if (nextTable) {
-              activeName = nextTable.name;
-            }
-          }
-        });
-      }
+				let tabs = this.editableTabs;
+				let activeName = this.editableTabsValue;
 
-      this.editableTabsValue = activeName;
-      this.editableTabs = tabs.filter((tab) => tab.name !== targetName);
+				if (activeName === 'Index') {
+					return
+				}
 
-      this.$router.push({ name: activeName });
-    },
-    clickTab(target) {
-      this.$router.push({ name: target.name });
-    },
+				if (activeName === targetName) {
+					tabs.forEach((tab, index) => {
+						if (tab.name === targetName) {
+							let nextTab = tabs[index + 1] || tabs[index - 1];
+							if (nextTab) {
+								activeName = nextTab.name;
+							}
+						}
+					});
+				}
+
+				this.editableTabsValue = activeName;
+				this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+
+				this.$router.push({name: activeName})
+
+			},
+			clickTab (target) {
+				this.$router.push({name: target.name})
+			}
   },
 };
 </script>

@@ -75,7 +75,7 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
             throw new AuthenticationServiceException("不支持身份验证方法:" + request.getMethod());
         }
         JSONObject jsonObject = IoUtils.parseRequestToJsonObject(request);
-        String captcha = jsonObject.getString(Constant.LOGIN_CODE);
+        String captcha = jsonObject.getString(Constant.LOGIN_CODE_KEY);
         if (StringUtils.isEmpty(captcha)) {
             throw new CaptchaException("验证码为空");
         }
@@ -83,10 +83,10 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         if (!b) {
             throw new CaptchaException("验证码错误");
         }
-        String username = jsonObject.getString(Constant.LOGIN_USER);
+        String username = jsonObject.getString(Constant.LOGIN_USER_KEY);
         username = username != null ? username : "";
         username = username.trim();
-        String password = jsonObject.getString(Constant.LOGIN_PASS);
+        String password = jsonObject.getString(Constant.LOGIN_PASS_KEY);
         password = password != null ? password : "";
 
         // 判断 账号 密码 验证码 是否为空

@@ -2,4 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qinweizhao.modules.sys.mapper.SysUserRoleMapper">
 
+    <select id="selectRolesByUserId" resultType="com.qinweizhao.modules.sys.entity.SysRole">
+
+    </select>
 </mapper>

@@ -1,9 +1,12 @@
 package com.qinweizhao.modules.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -13,6 +16,7 @@ import java.time.LocalDateTime;
  * @author qinweizhao
  * @since 2021-09-25
  */
+@Data
 public class SysUser {
 
     private static final long serialVersionUID = 1L;
@@ -49,64 +53,6 @@ public class SysUser {
     private String status;
 
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "SysUser{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", status='" + status + '\'' +
-                '}';
-    }
+    @TableField(exist = false)
+    private List<SysRole> sysRoles;
 }

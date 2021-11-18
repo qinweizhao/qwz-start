@@ -2,9 +2,12 @@ package com.qinweizhao.modules.sys.controller;
 
 
 import cn.hutool.core.map.MapUtil;
+import com.qinweizhao.common.entity.Constant;
 import com.qinweizhao.common.entity.R;
+import com.qinweizhao.common.entity.dto.PassDto;
 import com.qinweizhao.modules.sys.entity.SysUser;
-import com.qinweizhao.modules.sys.service.SysUserService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,7 +28,51 @@ import java.security.Principal;
 public class SysUserController extends BaseController {
 
     @Resource
-    private SysUserService sysUserService;
+    private BCryptPasswordEncoder passwordEncoder;
+
+
+    @PostMapping("/save")
+    public R save(@Validated @RequestBody SysUser sysUser) {
+        // 默认密码
+        String password = passwordEncoder.encode(Constant.DEFAULT_PASSWORD);
+        sysUser.setPassword(password);
+        // 默认头像
+        sysUser.setAvatar(Constant.DEFAULT_AVATAR);
+        return getR(sysUserService.save(sysUser));
+    }
+
+
+    @PostMapping("/delete")
+    public R delete(@RequestBody Long[] ids) {
+        return getR(sysUserService.removeSysUser(ids));
+    }
+
+
+    /**
+     * 修改密码
+     *
+     * @param passDto   密码
+     * @param principal 认证主体
+     * @return r
+     */
+    @PostMapping("/updatePwd")
+    public R updatePass(@Validated @RequestBody PassDto passDto, Principal principal) {
+        SysUser sysUser = sysUserService.getSysUserByUsername(principal.getName());
+        boolean matches = passwordEncoder.matches(passDto.getOldPassword(), sysUser.getPassword());
+        if (!matches) {
+            return R.failure("旧密码不正确");
+        }
+        sysUser.setPassword(passwordEncoder.encode(passDto.getNewPassword()));
+        sysUserService.updateById(sysUser);
+        return R.success("");
+    }
+
+    @PostMapping("/update")
+    public R update(@Validated @RequestBody SysUser sysUser) {
+        sysUserService.updateById(sysUser);
+        return R.success(sysUser);
+    }
+
 
     /**
      * 获取验证码
@@ -55,15 +102,27 @@ public class SysUserController extends BaseController {
         );
     }
 
-    @DeleteMapping("/delete")
-    public R delete(String id) {
-        boolean b = sysUserService.removeById(id);
-        return getR(b);
+    /**
+     * 获取用户信息
+     *
+     * @param id id
+     * @return r
+     */
+    @GetMapping("/info/{id}")
+    public R info(@PathVariable("id") Long id) {
+        return R.success(sysUserService.getInfoById(id));
     }
 
-    @PutMapping("/update")
-    public R update(SysUser sysUser) {
-        boolean b = sysUserService.updateById(sysUser);
-        return getR(b);
+    /**
+     * 用户列表（分页）
+     *
+     * @param username username
+     * @return r
+     */
+    @GetMapping("/page")
+    public R page(String username) {
+        return R.success(sysUserService.pageSysUsers(getPage(), username));
     }
+
+
 }

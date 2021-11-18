@@ -1,7 +1,10 @@
 package com.qinweizhao.modules.sys.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.qinweizhao.modules.sys.entity.SysRole;
 import com.qinweizhao.modules.sys.entity.SysUserRole;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,10 @@ import com.qinweizhao.modules.sys.entity.SysUserRole;
  */
 public interface SysUserRoleMapper extends BaseMapper<SysUserRole> {
 
+    /**
+     * 通过用户名查询所属角色
+     * @param id id
+     * @return List<SysRole>
+     */
+    List<SysRole> selectRolesByUserId(Long id);
 }

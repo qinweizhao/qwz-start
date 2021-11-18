@@ -1,8 +1,10 @@
 package com.qinweizhao.modules.sys.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qinweizhao.modules.sys.entity.SysUser;
 import com.qinweizhao.common.security.entity.SysUserDetails;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Set;
 
@@ -48,4 +50,6 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @return SysUser
      */
     SysUser getSysUserByUsername(String username);
+
+
 }
