@@ -70,4 +70,11 @@ public interface SysUserService extends IService<SysUser> {
      * @return b
      */
     boolean removeSysUser(Long[] ids);
+
+    /**
+     * 保存用户
+     * @param sysUser sysUser
+     * @return b
+     */
+    boolean savaSysUser(SysUser sysUser);
 }

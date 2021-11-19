@@ -22,4 +22,11 @@ public interface SysUserRoleMapper extends BaseMapper<SysUserRole> {
      * @return List<SysRole>
      */
     List<SysRole> selectRolesByUserId(Long id);
+
+    /**
+     * 批量保存
+     * @param list list
+     * @return r
+     */
+    boolean insertBatch(List<SysUserRole> list);
 }

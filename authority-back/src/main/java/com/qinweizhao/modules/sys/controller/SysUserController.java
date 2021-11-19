@@ -3,7 +3,6 @@ package com.qinweizhao.modules.sys.controller;
 
 import cn.hutool.core.map.MapUtil;
 import com.qinweizhao.common.controller.BaseController;
-import com.qinweizhao.common.entity.Constant;
 import com.qinweizhao.common.entity.R;
 import com.qinweizhao.common.entity.dto.PassDto;
 import com.qinweizhao.modules.sys.entity.SysUser;
@@ -34,12 +33,7 @@ public class SysUserController extends BaseController {
 
     @PostMapping("/save")
     public R save(@Validated @RequestBody SysUser sysUser) {
-        // 默认密码
-        String password = passwordEncoder.encode(Constant.DEFAULT_PASSWORD);
-        sysUser.setPassword(password);
-        // 默认头像
-        sysUser.setAvatar(Constant.DEFAULT_AVATAR);
-        return getR(sysUserService.save(sysUser));
+        return getR(sysUserService.savaSysUser(sysUser));
     }
 
 

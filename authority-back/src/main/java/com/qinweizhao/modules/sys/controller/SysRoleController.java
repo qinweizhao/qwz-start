@@ -3,7 +3,6 @@ package com.qinweizhao.modules.sys.controller;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qinweizhao.common.controller.BaseController;
 import com.qinweizhao.common.entity.R;
 import com.qinweizhao.modules.sys.entity.SysRole;
@@ -58,7 +57,8 @@ public class SysRoleController extends BaseController {
     @PostMapping("/delete")
     @PreAuthorize("hasAuthority('sys:role:delete')")
     @Transactional(rollbackFor = Exception.class)
-    public R info(@RequestBody Long[] ids) {
+    public R delete(@RequestBody Long[] ids) {
+
         sysRoleService.removeByIds(Arrays.asList(ids));
         // 删除中间表
         sysUserRoleService.remove(new QueryWrapper<SysUserRole>().in(ROLE_ID, (Object) ids));
@@ -99,19 +99,29 @@ public class SysRoleController extends BaseController {
     }
 
     /**
-     * 列表信息
+     * 分页信息
      *
      * @param name name
      * @return r
      */
-    @PreAuthorize("hasAuthority('sys:role:list')")
-    @GetMapping("/list")
-    public R list(String name) {
-        Page<SysRole> pageData = sysRoleService.page(getPage(),
+    @PreAuthorize("hasAuthority('sys:role:page')")
+    @GetMapping("/page")
+    public R page(String name) {
+        return R.success(sysRoleService.page(getPage(),
                 new QueryWrapper<SysRole>()
                         .like(StrUtil.isNotBlank(name), "name", name)
-        );
-        return R.success(pageData);
+        ));
+    }
+
+    /**
+     * 列表信息
+     *
+     * @return r
+     */
+    @PreAuthorize("hasAuthority('sys:role:list')")
+    @GetMapping("/list")
+    public R list() {
+        return R.success(sysRoleService.list());
     }
 
     /**
@@ -124,13 +134,12 @@ public class SysRoleController extends BaseController {
     @Transactional(rollbackFor = Exception.class)
     @PostMapping("/perm/{roleId}")
     @PreAuthorize("hasAuthority('sys:role:perm')")
-    public R info(@PathVariable("roleId") Long roleId, @RequestBody Long[] menuIds) {
+    public R perm(@PathVariable("roleId") Long roleId, @RequestBody Long[] menuIds) {
         List<SysRoleMenu> sysRoleMenus = new ArrayList<>();
         Arrays.stream(menuIds).forEach(menuId -> {
             SysRoleMenu roleMenu = new SysRoleMenu();
             roleMenu.setMenuId(menuId);
             roleMenu.setRoleId(roleId);
-
             sysRoleMenus.add(roleMenu);
         });
         // 先删除原来的记录，再保存新的

@@ -55,4 +55,8 @@ public class SysUser {
 
     @TableField(exist = false)
     private List<SysRole> sysRoles;
+
+
+    @TableField(exist = false)
+    private Long[] roleIds;
 }
