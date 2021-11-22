@@ -32,7 +32,7 @@ request.interceptors.response.use(response => {
     error => {
         console.log(error);
         if (error.response.data) {
-            error.message = error.response.data.msg
+            error.message = error.response.data.message
         }
         ;
         if (error.response.status === 401) {
