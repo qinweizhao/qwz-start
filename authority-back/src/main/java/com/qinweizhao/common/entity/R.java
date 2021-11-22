@@ -1,12 +1,15 @@
 package com.qinweizhao.common.entity;
 
 
+import lombok.Data;
+
 import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author qinweizhao
  * @since 2021/9/25
  */
+@Data
 public class R {
 
     /**
@@ -56,39 +59,6 @@ public class R {
 
     public static R failure(int code, String message, Object data) {
         return new R(code, message, data);
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getmessage() {
-        return message;
-    }
-
-    public void setmessage(String message) {
-        this.message = message;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
-
-    @Override
-    public String toString() {
-        return "CommonResponse{" +
-                "code=" + code +
-                ", message='" + message + '\'' +
-                ", data=" + data +
-                '}';
     }
 
 }

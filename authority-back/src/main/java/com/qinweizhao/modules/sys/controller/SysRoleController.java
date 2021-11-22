@@ -43,6 +43,7 @@ public class SysRoleController extends BaseController {
     @PostMapping("/save")
     @PreAuthorize("hasAuthority('sys:role:save')")
     public R save(@Validated @RequestBody SysRole sysRole) {
+        sysRole.setStatus("0");
         sysRoleService.save(sysRole);
         return R.success(sysRole);
     }
@@ -77,6 +78,18 @@ public class SysRoleController extends BaseController {
     @PreAuthorize("hasAuthority('sys:role:update')")
     public R update(@Validated @RequestBody SysRole sysRole) {
         sysRoleService.updateById(sysRole);
+        List<Long> menuIds = sysRole.getMenuIds();
+        Long roleId = sysRole.getRoleId();
+        List<SysRoleMenu> sysRoleMenus = new ArrayList<>();
+        menuIds.forEach(menuId -> {
+            SysRoleMenu roleMenu = new SysRoleMenu();
+            roleMenu.setMenuId(menuId);
+            roleMenu.setRoleId(roleId);
+            sysRoleMenus.add(roleMenu);
+        });
+        // 先删除原来的记录，再保存新的
+        sysRoleMenuService.remove(new QueryWrapper<SysRoleMenu>().eq(ROLE_ID, roleId));
+        sysRoleMenuService.saveBatch(sysRoleMenus);
         return R.success(sysRole);
     }
 
@@ -123,30 +136,4 @@ public class SysRoleController extends BaseController {
     public R list() {
         return R.success(sysRoleService.list());
     }
-
-    /**
-     * 分配菜单
-     *
-     * @param roleId  roleId
-     * @param menuIds menuIds
-     * @return r
-     */
-    @Transactional(rollbackFor = Exception.class)
-    @PostMapping("/perm/{roleId}")
-    @PreAuthorize("hasAuthority('sys:role:perm')")
-    public R perm(@PathVariable("roleId") Long roleId, @RequestBody Long[] menuIds) {
-        List<SysRoleMenu> sysRoleMenus = new ArrayList<>();
-        Arrays.stream(menuIds).forEach(menuId -> {
-            SysRoleMenu roleMenu = new SysRoleMenu();
-            roleMenu.setMenuId(menuId);
-            roleMenu.setRoleId(roleId);
-            sysRoleMenus.add(roleMenu);
-        });
-        // 先删除原来的记录，再保存新的
-        sysRoleMenuService.remove(new QueryWrapper<SysRoleMenu>().eq(ROLE_ID, roleId));
-        sysRoleMenuService.saveBatch(sysRoleMenus);
-        return R.success(menuIds);
-    }
-
-
 }

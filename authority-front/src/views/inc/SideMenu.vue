@@ -18,7 +18,7 @@
         default-active="Index"
         :index="menu.menuName"
         v-for="menu in menuList"
-        :key="menu.menuName"
+        :key="menu.menuId"
     >
       <template slot="title">
         <i :class="menu.icon"></i> <span>{{ menu.menuName }}</span>

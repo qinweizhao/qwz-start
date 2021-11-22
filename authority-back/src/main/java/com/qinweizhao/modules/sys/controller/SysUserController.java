@@ -62,6 +62,12 @@ public class SysUserController extends BaseController {
         return R.success("");
     }
 
+    /**
+     * 修改
+     *
+     * @param sysUser sysUser
+     * @return r
+     */
     @PostMapping("/update")
     public R update(@Validated @RequestBody SysUser sysUser) {
         sysUserService.updateById(sysUser);
