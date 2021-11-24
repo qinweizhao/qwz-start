@@ -20,7 +20,7 @@ import java.nio.charset.StandardCharsets;
 public class MyAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException {
-        // TODO
+
         httpServletResponse.setContentType("application/json;charset=UTF-8");
         ServletOutputStream outputStream = httpServletResponse.getOutputStream();
 

@@ -2,8 +2,8 @@ package com.qinweizhao.modules.sys.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qinweizhao.modules.sys.entity.SysUser;
 import com.qinweizhao.common.security.entity.SysUserDetails;
+import com.qinweizhao.modules.sys.entity.SysUser;
 
 import java.io.IOException;
 
@@ -51,7 +51,8 @@ public interface SysUserService extends IService<SysUser> {
 
     /**
      * 用户列表（分页）
-     * @param page 分页
+     *
+     * @param page     分页
      * @param username 用户名
      * @return Page<SysUser>
      */
@@ -59,6 +60,7 @@ public interface SysUserService extends IService<SysUser> {
 
     /**
      * 通过用户 id 查询用户
+     *
      * @param id id
      * @return SysUser
      */
@@ -66,6 +68,7 @@ public interface SysUserService extends IService<SysUser> {
 
     /**
      * 删除用户
+     *
      * @param ids ids
      * @return b
      */
@@ -73,6 +76,7 @@ public interface SysUserService extends IService<SysUser> {
 
     /**
      * 保存用户
+     *
      * @param sysUser sysUser
      * @return b
      */

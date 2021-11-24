@@ -44,14 +44,13 @@ public class SysUserDetails implements UserDetails {
      */
     private List<GrantedAuthority> authorities;
 
-
-    public void setAuthorities(List<GrantedAuthority> authorities) {
-        this.authorities = authorities;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.authorities;
+    }
+
+    public void setAuthorities(List<GrantedAuthority> authorities) {
+        this.authorities = authorities;
     }
 
     @Override

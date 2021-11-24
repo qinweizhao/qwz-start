@@ -6,6 +6,7 @@ import com.qinweizhao.common.controller.BaseController;
 import com.qinweizhao.common.entity.R;
 import com.qinweizhao.common.entity.dto.PassDto;
 import com.qinweizhao.modules.sys.entity.SysUser;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -31,13 +32,27 @@ public class SysUserController extends BaseController {
     private BCryptPasswordEncoder passwordEncoder;
 
 
+    /**
+     * 保存
+     *
+     * @param sysUser sysUser
+     * @return r
+     */
     @PostMapping("/save")
+    @PreAuthorize("hasAuthority('sys:user:save')")
     public R save(@Validated @RequestBody SysUser sysUser) {
         return getR(sysUserService.savaSysUser(sysUser));
     }
 
 
+    /**
+     * 批量删除
+     *
+     * @param ids ids
+     * @return r
+     */
     @PostMapping("/delete")
+    @PreAuthorize("hasAuthority('sys:user:delete')")
     public R delete(@RequestBody Long[] ids) {
         return getR(sysUserService.removeSysUser(ids));
     }
@@ -69,6 +84,7 @@ public class SysUserController extends BaseController {
      * @return r
      */
     @PostMapping("/update")
+    @PreAuthorize("hasAuthority('sys:user:update')")
     public R update(@Validated @RequestBody SysUser sysUser) {
         sysUserService.updateById(sysUser);
         return R.success(sysUser);
@@ -109,6 +125,7 @@ public class SysUserController extends BaseController {
      * @param id id
      * @return r
      */
+    @PreAuthorize("hasAuthority('sys:user:list')")
     @GetMapping("/info/{id}")
     public R info(@PathVariable("id") Long id) {
         return R.success(sysUserService.getInfoById(id));
@@ -121,6 +138,7 @@ public class SysUserController extends BaseController {
      * @return r
      */
     @GetMapping("/page")
+    @PreAuthorize("hasAuthority('sys:user:list')")
     public R page(String username) {
         return R.success(sysUserService.pageSysUsers(getPage(), username));
     }

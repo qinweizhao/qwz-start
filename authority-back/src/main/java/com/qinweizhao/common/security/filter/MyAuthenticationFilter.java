@@ -2,10 +2,10 @@ package com.qinweizhao.common.security.filter;
 
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.qinweizhao.common.entity.R;
 import com.qinweizhao.common.entity.Constant;
-import com.qinweizhao.common.exception.CaptchaException;
+import com.qinweizhao.common.entity.R;
 import com.qinweizhao.common.enums.HttpMethod;
+import com.qinweizhao.common.exception.CaptchaException;
 import com.qinweizhao.common.util.GuavaCacheUtils;
 import com.qinweizhao.common.util.IoUtils;
 import com.qinweizhao.common.util.JwtUtils;
@@ -38,15 +38,13 @@ import java.util.concurrent.ConcurrentMap;
 public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     /**
-     * 日志记录
-     */
-    private final Logger log = LoggerFactory.getLogger(getClass());
-
-    /**
      * 登录 url
      */
     private static final String LOGIN_URL = "/login";
-
+    /**
+     * 日志记录
+     */
+    private final Logger log = LoggerFactory.getLogger(getClass());
     /**
      * 认证管理器
      */

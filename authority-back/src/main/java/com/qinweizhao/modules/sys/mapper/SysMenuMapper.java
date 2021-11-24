@@ -18,6 +18,7 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
     /**
      * 查询用户所拥有的菜单
+     *
      * @param userId userId
      * @return List<SysMenuDTO>
      */

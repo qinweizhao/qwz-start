@@ -9,13 +9,10 @@ import com.qinweizhao.common.entity.dto.SysMenuDTO;
 import com.qinweizhao.modules.sys.entity.SysMenu;
 import com.qinweizhao.modules.sys.entity.SysRoleMenu;
 import com.qinweizhao.modules.sys.entity.SysUser;
-import com.qinweizhao.modules.sys.service.SysMenuService;
-import com.qinweizhao.modules.sys.service.SysUserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.security.Principal;
 import java.util.List;
 
@@ -31,12 +28,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/sys/menu")
 public class SysMenuController extends BaseController {
-
-    @Resource
-    private SysMenuService sysMenuService;
-
-    @Resource
-    private SysUserService sysUserService;
 
 
     /**

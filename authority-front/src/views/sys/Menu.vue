@@ -176,7 +176,11 @@
                         :value="item.menuId"
                       ></el-option>
                       <template v-for="child in item.children">
-                        <el-option :label="child.menuName" :value="child.menuId" :key="child.menuId">
+                        <el-option
+                          :label="child.menuName"
+                          :value="child.menuId"
+                          :key="child.menuId"
+                        >
                           <span>{{ "- " + child.menuName }}</span>
                         </el-option>
                       </template>
@@ -289,7 +293,7 @@ export default {
       this.delBtlStatu = val.length == 0;
     },
     delHandle(id) {
-      this.$axios.post("/sys/menu/delete/"+id).then((res) => {
+      this.$axios.post("/sys/menu/delete/" + id).then((res) => {
         this.$message({
           showClose: true,
           message: "恭喜你，操作成功",
@@ -299,7 +303,7 @@ export default {
           },
         });
       });
-    }
+    },
   },
 };
 </script>

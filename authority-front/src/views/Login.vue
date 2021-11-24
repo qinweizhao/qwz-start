@@ -12,7 +12,7 @@
         <el-input v-model="loginForm.username" style="width: 230px"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input v-model="loginForm.password" style="width: 230px"></el-input>
+        <el-input v-model="loginForm.password" type="password" style="width: 230px"></el-input>
       </el-form-item>
       <el-form-item label="验证码" prop="code">
         <el-input
@@ -31,7 +31,7 @@
     </el-form>
     <!--  底部  -->
     <div class="loginFooter">
-      <span>Copyright © 2021 qinweizhao.com All Rights Reserved.</span>
+      <span>Copyright © 2021 qinweizhao All Rights Reserved.</span>
     </div>
   </div>
 </template>
@@ -67,9 +67,9 @@ export default {
                 const jwt = res.data.data;
                 // // 将 jwt 存储到应用 store 中
                 this.$store.commit('SET_TOKEN', jwt);
-                this.$router.push("/home");
+                this.$router.push("/");
               })
-              .catch((error) => {
+              .catch(() => {
                 this.getCaptcha();
                 console.log("error submit!!!");
               });

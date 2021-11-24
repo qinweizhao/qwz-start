@@ -31,21 +31,28 @@ import java.util.Collections;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    /**
+     * 资源过滤
+     */
+    private static final String[] URL_WHITELIST = {
+            "/css/**",
+            "/js/**",
+            "/index.html",
+            "/img/**",
+            "/fonts/**",
+            "/favicon.ico",
+            "/sys/user/captcha"
+    };
     @Resource
     private UserDetailsService sysUserDetailsService;
-
     @Resource
     private MyAccessDeniedHandler myAccessDeniedHandler;
-
     @Resource
     private MyLogoutSuccessHandler myLogoutSuccessHandler;
-
     @Resource
     private MyAuthenticationEntryPoint myAuthenticationEntryPoint;
-
     @Resource
     private JwtAuthenticationFilter jwtAuthenticationFilter;
-
 
     /**
      * 密码编码器
@@ -87,7 +94,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(sysUserDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
 
-
     /**
      * @param web web
      */
@@ -95,19 +101,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers(URL_WHITELIST);
     }
-
-    /**
-     * 资源过滤
-     */
-    private static final String[] URL_WHITELIST = {
-            "/css/**",
-            "/js/**",
-            "/index.html",
-            "/img/**",
-            "/fonts/**",
-            "/favicon.ico",
-            "/sys/user/captcha"
-    };
 
     /**
      * 关键配置

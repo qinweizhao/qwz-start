@@ -19,6 +19,7 @@ public interface SysUserRoleService extends IService<SysUserRole> {
 
     /**
      * 通过用户 id 获取所属角色集合
+     *
      * @param id id
      * @return List<SysRole>
      */

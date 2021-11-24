@@ -49,7 +49,6 @@
             align="center"
             key="roleName"
             prop="roleName"
-  
           >
           </el-table-column>
           <el-table-column
@@ -177,7 +176,7 @@ export default {
         ],
         roleKey: [
           { required: true, message: "角色标识不能为空", trigger: "blur" },
-        ]
+        ],
       },
     };
   },

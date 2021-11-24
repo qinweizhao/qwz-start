@@ -2,8 +2,8 @@ package com.qinweizhao.common.security.filter;
 
 import cn.hutool.core.util.StrUtil;
 import com.qinweizhao.common.security.entity.SysUserDetails;
-import com.qinweizhao.modules.sys.service.SysUserService;
 import com.qinweizhao.common.util.JwtUtils;
+import com.qinweizhao.modules.sys.service.SysUserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import org.slf4j.Logger;

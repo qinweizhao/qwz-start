@@ -18,6 +18,7 @@ public interface SysUserRoleMapper extends BaseMapper<SysUserRole> {
 
     /**
      * 通过用户名查询所属角色
+     *
      * @param id id
      * @return List<SysRole>
      */
@@ -25,6 +26,7 @@ public interface SysUserRoleMapper extends BaseMapper<SysUserRole> {
 
     /**
      * 批量保存
+     *
      * @param list list
      * @return r
      */

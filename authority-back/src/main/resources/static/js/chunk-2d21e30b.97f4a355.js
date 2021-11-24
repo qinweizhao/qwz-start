@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d21e30b"],{d504:function(e,t,n){"use strict";n.r(t);var a=function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticStyle:{"text-align":"center"}},[n("h2"),n("el-image",{staticStyle:{width:"300px",height:"300px"},attrs:{src:"https://www.qinweizhao.com/upload/2021/11/logo-5b1ce3de7b724b6d905935eeed0faa50.png"}})],1)},c=[],i={name:"Index"},l=i,s=n("2877"),d=Object(s["a"])(l,a,c,!1,null,"50fe5930",null);t["default"]=d.exports}}]);
+//# sourceMappingURL=chunk-2d21e30b.97f4a355.js.map

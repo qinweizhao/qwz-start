@@ -2,7 +2,6 @@ package com.qinweizhao.common.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qinweizhao.common.entity.R;
-import com.qinweizhao.modules.sys.entity.SysUser;
 import com.qinweizhao.modules.sys.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.ServletRequestUtils;
