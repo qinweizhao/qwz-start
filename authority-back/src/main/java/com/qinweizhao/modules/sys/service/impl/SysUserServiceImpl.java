@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
-import com.qinweizhao.common.entity.Constant;
+import com.qinweizhao.common.entity.Constants;
 import com.qinweizhao.common.security.entity.SysUserDetails;
 import com.qinweizhao.common.util.GuavaCacheUtils;
 import com.qinweizhao.modules.sys.entity.SysRole;
@@ -103,7 +103,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         if (log.isDebugEnabled()) {
             log.debug("验证码为:" + text);
         }
-        String key = Constant.LOGIN_CODE_KEY + "_" + RandomStringUtils.random(5);
+        String key = Constants.LOGIN_CODE_KEY + "_" + RandomStringUtils.random(5);
         GuavaCacheUtils.CACHE.put(key, text);
         BufferedImage image = defaultKaptcha.createImage(text);
         ImageIO.write(image, "jpg", outputStream);
@@ -177,7 +177,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     public boolean savaSysUser(SysUser sysUser) {
         // 默认头像
-        sysUser.setAvatar(Constant.DEFAULT_AVATAR);
+        sysUser.setAvatar(Constants.DEFAULT_AVATAR);
         sysUser.setPassword(bCryptPasswordEncoder.encode(sysUser.getPassword()));
         this.baseMapper.insert(sysUser);
         Long[] roleIds = sysUser.getRoleIds();

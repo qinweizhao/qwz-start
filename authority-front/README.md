@@ -1,6 +1,6 @@
-# project-authority-front
+## authority-front（前端源码）
 
-## Project setup
+### Project setup
 
 ```
 npm install
@@ -21,3 +21,4 @@ npm run build
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+

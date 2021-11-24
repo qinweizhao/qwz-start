@@ -8,9 +8,6 @@ export default {
   name: "App",
   watch: {
     $route(to, from) {
-      console.log("to");
-      console.log(to);
-
       if (to.path != "/login") {
         let obj = {
           name: to.name,

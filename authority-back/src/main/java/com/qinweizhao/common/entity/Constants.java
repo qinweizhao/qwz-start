@@ -4,7 +4,7 @@ package com.qinweizhao.common.entity;
  * @author qinweizhao
  * @since 2021/9/27
  */
-public class Constant {
+public class Constants {
 
 
     /**
@@ -28,7 +28,7 @@ public class Constant {
      */
     public static final String DEFAULT_AVATAR = "https://cdn.jsdelivr.net/gh/qinhua/halo-theme-joe2.0@master/source/svg/spinner-preloader.svg";
 
-    private Constant() {
+    private Constants() {
 
     }
 

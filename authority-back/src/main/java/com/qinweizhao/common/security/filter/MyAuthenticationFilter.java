@@ -2,7 +2,7 @@ package com.qinweizhao.common.security.filter;
 
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.qinweizhao.common.entity.Constant;
+import com.qinweizhao.common.entity.Constants;
 import com.qinweizhao.common.entity.R;
 import com.qinweizhao.common.enums.HttpMethod;
 import com.qinweizhao.common.exception.CaptchaException;
@@ -13,9 +13,7 @@ import com.qinweizhao.common.util.SpringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationServiceException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -73,7 +71,7 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
             throw new AuthenticationServiceException("不支持身份验证方法:" + request.getMethod());
         }
         JSONObject jsonObject = IoUtils.parseRequestToJsonObject(request);
-        String captcha = jsonObject.getString(Constant.LOGIN_CODE_KEY);
+        String captcha = jsonObject.getString(Constants.LOGIN_CODE_KEY);
         if (StringUtils.isEmpty(captcha)) {
             throw new CaptchaException("验证码为空");
         }
@@ -81,10 +79,10 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         if (!b) {
             throw new CaptchaException("验证码错误");
         }
-        String username = jsonObject.getString(Constant.LOGIN_USER_KEY);
+        String username = jsonObject.getString(Constants.LOGIN_USER_KEY);
         username = username != null ? username : "";
         username = username.trim();
-        String password = jsonObject.getString(Constant.LOGIN_PASS_KEY);
+        String password = jsonObject.getString(Constants.LOGIN_PASS_KEY);
         password = password != null ? password : "";
 
         // 判断 账号 密码 验证码 是否为空
@@ -124,15 +122,23 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
     }
 
     @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException {
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException {
         if (log.isDebugEnabled()) {
             log.debug("登录失败");
         }
         R failure = new R();
-        if (failed instanceof CaptchaException) {
-            failure = R.failure("验证码错误");
+        response.setContentType("application/json;charset=utf-8");
+        if (exception instanceof LockedException) {
+            failure.setMessage("账户被锁定，请联系管理员!");
+        } else if (exception instanceof CredentialsExpiredException) {
+            failure.setMessage("密码过期，请联系管理员!");
+        } else if (exception instanceof AccountExpiredException) {
+            failure.setMessage("账户过期，请联系管理员!");
+        } else if (exception instanceof DisabledException) {
+            failure.setMessage("账户被禁用，请联系管理员!");
+        } else if (exception instanceof BadCredentialsException) {
+            failure.setMessage("用户名或者密码输入错误，请重新输入!");
         }
-        response.setContentType("application/json;charset=UTF-8");
         PrintWriter writer = response.getWriter();
         writer.write(JSONUtil.toJsonStr(failure));
         writer.flush();

@@ -38,8 +38,8 @@ const routes = [
 
 
 const router = new VueRouter({
-    mode: 'history',
-    base: process.env.BASE_URL,
+    //mode: 'history',
+    //base: process.env.BASE_URL,
     routes
 })
 
@@ -83,10 +83,6 @@ router.beforeEach((to, from, next) => {
                     })
                 }
             })
-
-            console.log("newRoutes")
-            console.log(newRoutes)
-
             router.addRoutes(newRoutes)
             hasRoutes = true
             store.commit("changeRouteStatus", hasRoutes)
