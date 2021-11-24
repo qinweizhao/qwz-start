@@ -1,11 +1,11 @@
 <p align="center">
   <a class="logo" href="https://github.com/qinweizhao/qwz-authority">
-    <img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-authority/authority-resource/img/authority.png" height="80" alt="Authority">
+    <img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-authority/authority-resource/img/authority.png" height="80" width="45%" alt="Authority">
   </a>
 </p>
 
 <p align="center">
-👉 <a href="https://www.qinweizhao.com">https://www.qinweizhao.com/</a> 👈
+👉 <a href="https://www.qinweizhao.com">https://www.qinweizhao.com</a> 👈
 </p>
 
 <p align="center">
