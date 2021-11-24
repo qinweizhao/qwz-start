@@ -1,6 +1,6 @@
 <p align="center">
   <a class="logo" href="https://github.com/qinweizhao/qwz-authority">
-    <img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-authority/authority-resource/img/authority.png" height="80" width="45%" alt="Authority">
+    <img src="https://www.qinweizhao.com/upload/2021/11/authority-024117b22e2c4664bc208d97519e1b72.png" height="80" width="45%" alt="Authority">
   </a>
 </p>
 
