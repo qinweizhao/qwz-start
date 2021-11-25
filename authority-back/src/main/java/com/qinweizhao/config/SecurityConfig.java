@@ -8,10 +8,6 @@ import com.qinweizhao.common.security.handler.MyLogoutSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.ProviderManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -22,7 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
-import java.util.Collections;
 
 /**
  * @author qinweizhao
@@ -45,14 +40,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     };
     @Resource
     private UserDetailsService sysUserDetailsService;
+
     @Resource
     private MyAccessDeniedHandler myAccessDeniedHandler;
+
     @Resource
     private MyLogoutSuccessHandler myLogoutSuccessHandler;
+
     @Resource
     private MyAuthenticationEntryPoint myAuthenticationEntryPoint;
+
     @Resource
     private JwtAuthenticationFilter jwtAuthenticationFilter;
+
 
     /**
      * 密码编码器
@@ -64,23 +64,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    /**
-     * 认证管理器
-     *
-     * @return AuthenticationManager
-     */
-    @Override
-    public AuthenticationManager authenticationManagerBean() {
-        return new ProviderManager(Collections.singletonList(daoAuthenticationProvider()));
-    }
 
     /**
-     * 认证提供者
+     * 自定义 UsernamePasswordAuthenticationFilter 过滤器
      *
-     * @return AuthenticationProvider
+     * @return MyAuthenticationFilter
+     * @throws Exception e
      */
-    private AuthenticationProvider daoAuthenticationProvider() {
-        return new DaoAuthenticationProvider();
+    @Bean
+    MyAuthenticationFilter myAuthenticationFilter() throws Exception {
+        MyAuthenticationFilter myAuthenticationFilter = new MyAuthenticationFilter();
+        myAuthenticationFilter.setAuthenticationManager(authenticationManagerBean());
+        return myAuthenticationFilter;
     }
 
     /**
@@ -146,7 +141,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // 自定义过滤器
                 .and()
-                .addFilter(new MyAuthenticationFilter(this.authenticationManager()))
+                .addFilter(myAuthenticationFilter())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 

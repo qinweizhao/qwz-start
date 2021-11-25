@@ -10,9 +10,8 @@ import com.qinweizhao.common.util.GuavaCacheUtils;
 import com.qinweizhao.common.util.IoUtils;
 import com.qinweizhao.common.util.JwtUtils;
 import com.qinweizhao.common.util.SpringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -33,26 +32,19 @@ import java.util.concurrent.ConcurrentMap;
  * @author qinweizhao
  * @since 2021/9/25
  */
+@Slf4j
 public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     /**
      * 登录 url
      */
     private static final String LOGIN_URL = "/login";
-    /**
-     * 日志记录
-     */
-    private final Logger log = LoggerFactory.getLogger(getClass());
-    /**
-     * 认证管理器
-     */
-    private final AuthenticationManager authenticationManager;
+
 
     /**
      * 无参构造器
      */
-    public MyAuthenticationFilter(AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
+    public MyAuthenticationFilter() {
         setFilterProcessesUrl(LOGIN_URL);
     }
 
@@ -88,7 +80,7 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         // 判断 账号 密码 验证码 是否为空
         log.info("当前登录账户：{}", jsonObject);
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
-        return authenticationManager.authenticate(token);
+        return this.getAuthenticationManager().authenticate(token);
     }
 
 
