@@ -27,14 +27,14 @@ request.interceptors.response.use(response => {
     }
 },
     error => {
-        console.log(error);
         if (error.response.data) {
             error.message = error.response.data.message
         }
         ;
         if (error.response.status === 401) {
-            router.push("/")
+            router.push("/login")
         }
+        ;
         Element.Message.error(error.message, {
             duration: 3 * 1000
         });

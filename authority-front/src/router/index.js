@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import Home from '../views/Home.vue'
-import axios from '../axios'
+import axios from '../util/axios'
 import store from '../store'
 
 Vue.use(VueRouter)
@@ -66,7 +66,7 @@ router.beforeEach((to, from, next) => {
 
             store.commit("setMenuList", res.data.data.nav);
 
-            store.commit("setPermList", res.data.data.authoritys);
+            store.commit("setPermList", res.data.data.Authority);
 
             // 动态绑定路由
             let newRoutes = router.options.routes;

@@ -18,14 +18,23 @@
           </el-form-item>
 
           <el-form-item>
-            <el-button type="primary" @click="handleAdd">新增</el-button>
+            <el-button
+              type="primary"
+              @click="handleAdd"
+              v-if="hasAuthority('sys:user:save')"
+              >新增</el-button
+            >
           </el-form-item>
           <el-form-item>
             <el-popconfirm
               title="这是确定批量删除吗？"
               @confirm="delHandle(null)"
             >
-              <el-button type="danger" slot="reference" :disabled="delBtlStatu"
+              <el-button
+                type="danger"
+                slot="reference"
+                :disabled="delBtlStatu"
+                v-if="hasAuthority('sys:user:delete')"
                 >批量删除</el-button
               >
             </el-popconfirm>
@@ -71,13 +80,19 @@
           />
 
           <el-table-column label="状态" align="center" key="status">
-            <template slot-scope="scope" v-if="scope.row.userId !== 1">
-              <el-switch
-                v-model="scope.row.status"
-                active-value="0"
-                inactive-value="1"
-                @change="handleStatusChange(scope.row)"
-              ></el-switch>
+            <template slot-scope="scope">
+              <el-tag
+                size="small"
+                v-if="scope.row.status === '0'"
+                type="success"
+                >正常</el-tag
+              >
+              <el-tag
+                size="small"
+                v-else-if="scope.row.status === '1'"
+                type="danger"
+                >禁用</el-tag
+              >
             </template>
           </el-table-column>
           <el-table-column
@@ -86,12 +101,13 @@
             width="260"
             class-name="small-padding fixed-width"
           >
-            <template slot-scope="scope" v-if="scope.row.userId !== 1">
+            <template slot-scope="scope">
               <el-button
                 size="mini"
                 type="primary"
                 icon="el-icon-edit"
                 @click="handleUpdate(scope.row.userId)"
+                v-if="hasAuthority('sys:user:update')"
                 >修改</el-button
               >
               <el-button
@@ -99,6 +115,7 @@
                 type="primary"
                 icon="el-icon-delete"
                 @click="delHandle(scope.row.userId)"
+                v-if="hasAuthority('sys:user:delete')"
                 >删除</el-button
               >
             </template>
@@ -117,11 +134,6 @@
         <el-dialog :visible.sync="dialogVisible" append-to-body width="550px">
           <el-form ref="form" :model="form" :rules="rules" label-width="80px">
             <el-row>
-              <!-- <el-col :span="24">
-                <template>
-                  <el-avatar size="large" :src="editForm.avatar"></el-avatar>
-                </template>
-              </el-col> -->
               <el-col :span="12">
                 <el-form-item label="账号" prop="username">
                   <el-input

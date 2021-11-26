@@ -18,14 +18,23 @@
           </el-form-item>
 
           <el-form-item>
-            <el-button type="primary" @click="handleAdd">新增</el-button>
+            <el-button
+              type="primary"
+              @click="handleAdd"
+              v-if="hasAuthority('sys:role:save')"
+              >新增</el-button
+            >
           </el-form-item>
           <el-form-item>
             <el-popconfirm
               title="这是确定批量删除吗？"
               @confirm="delHandle(null)"
             >
-              <el-button type="danger" slot="reference" :disabled="delBtlStatu"
+              <el-button
+                type="danger"
+                slot="reference"
+                :disabled="delBtlStatu"
+                v-if="hasAuthority('sys:role:delete')"
                 >批量删除</el-button
               >
             </el-popconfirm>
@@ -59,13 +68,19 @@
             :show-overflow-tooltip="true"
           />
           <el-table-column label="状态" align="center" key="status">
-            <template slot-scope="scope" v-if="scope.row.roleId !== 1">
-              <el-switch
-                v-model="scope.row.status"
-                active-value="0"
-                inactive-value="1"
-                @change="handleStatusChange(scope.row)"
-              ></el-switch>
+            <template slot-scope="scope">
+              <el-tag
+                size="small"
+                v-if="scope.row.status === '0'"
+                type="success"
+                >正常</el-tag
+              >
+              <el-tag
+                size="small"
+                v-else-if="scope.row.status === '1'"
+                type="danger"
+                >禁用</el-tag
+              >
             </template>
           </el-table-column>
           <el-table-column
@@ -74,12 +89,13 @@
             width="260"
             class-name="small-padding fixed-width"
           >
-            <template slot-scope="scope" v-if="scope.row.roleId !== 1">
+            <template slot-scope="scope">
               <el-button
                 size="mini"
                 type="primary"
                 icon="el-icon-edit"
                 @click="handleUpdate(scope.row.roleId)"
+                v-if="hasAuthority('sys:role:update')"
                 >修改</el-button
               >
               <el-button
@@ -87,6 +103,7 @@
                 type="primary"
                 icon="el-icon-delete"
                 @click="delHandle(scope.row.roleId)"
+                v-if="hasAuthority('sys:role:delete')"
                 >删除</el-button
               >
             </template>

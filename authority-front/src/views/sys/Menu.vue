@@ -5,7 +5,12 @@
       <el-col :span="24" :xs="24">
         <el-form class="search" :inline="true">
           <el-form-item>
-            <el-button type="primary" @click="handleAdd">新增</el-button>
+            <el-button
+              type="primary"
+              @click="handleAdd"
+              v-if="hasAuthority('sys:menu:save')"
+              >新增</el-button
+            >
           </el-form-item>
         </el-form>
         <el-table
@@ -67,12 +72,18 @@
           </el-table-column>
           <el-table-column label="状态" align="center" key="status">
             <template slot-scope="scope">
-              <el-switch
-                v-model="scope.row.status"
-                active-value="0"
-                inactive-value="1"
-                @change="handleStatusChange(scope.row)"
-              ></el-switch>
+              <el-tag
+                size="small"
+                v-if="scope.row.status === '0'"
+                type="success"
+                >正常</el-tag
+              >
+              <el-tag
+                size="small"
+                v-else-if="scope.row.status === '1'"
+                type="danger"
+                >禁用</el-tag
+              >
             </template>
           </el-table-column>
           <el-table-column
@@ -87,6 +98,7 @@
                 type="primary"
                 icon="el-icon-edit"
                 @click="handleUpdate(scope.row.menuId)"
+                v-if="hasAuthority('sys:menu:update')"
                 >修改</el-button
               >
               <el-button
@@ -94,6 +106,7 @@
                 type="primary"
                 icon="el-icon-delete"
                 @click="delHandle(scope.row.menuId)"
+                v-if="hasAuthority('sys:menu:delete')"
                 >删除</el-button
               >
             </template>
