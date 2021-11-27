@@ -13,4 +13,7 @@ public class PassDto implements Serializable {
 
     @NotBlank(message = "新密码不能为空")
     private String newPassword;
+
+    @NotBlank(message = "重复密码不能为空")
+    private String checkPass;
 }

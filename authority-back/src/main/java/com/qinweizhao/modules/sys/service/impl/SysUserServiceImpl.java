@@ -108,8 +108,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         BufferedImage image = defaultKaptcha.createImage(text);
         ImageIO.write(image, "jpg", outputStream);
         outputStream.flush();
-        String str = "data:image/jpeg;base64,";
-        return str + Base64.encode(outputStream.toByteArray());
+        return Constants.BASE64_PREFIX + Base64.encode(outputStream.toByteArray());
     }
 
     /**

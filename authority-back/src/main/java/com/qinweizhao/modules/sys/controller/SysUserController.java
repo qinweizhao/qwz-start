@@ -74,7 +74,7 @@ public class SysUserController extends BaseController {
         }
         sysUser.setPassword(passwordEncoder.encode(passDto.getNewPassword()));
         sysUserService.updateById(sysUser);
-        return R.success("");
+        return R.success("密码修改成功");
     }
 
     /**

@@ -7,9 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ import java.io.IOException;
  * @author qinweizhao
  * @since 2021/9/27
  */
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     private final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
@@ -26,10 +26,8 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public R handler(MethodArgumentNotValidException e) {
-
         BindingResult result = e.getBindingResult();
         ObjectError objectError = result.getAllErrors().stream().findFirst().get();
-
         log.error("实体校验异常：----------------{}", objectError.getDefaultMessage());
         return R.failure(objectError.getDefaultMessage());
     }

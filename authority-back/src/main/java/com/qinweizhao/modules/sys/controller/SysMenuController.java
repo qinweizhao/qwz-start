@@ -10,6 +10,7 @@ import com.qinweizhao.modules.sys.entity.SysMenu;
 import com.qinweizhao.modules.sys.entity.SysRoleMenu;
 import com.qinweizhao.modules.sys.entity.SysUser;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,12 +52,10 @@ public class SysMenuController extends BaseController {
     @PostMapping("/delete/{id}")
     @PreAuthorize("hasAuthority('sys:menu:delete')")
     public R delete(@PathVariable("id") Long id) {
-
         int count = sysMenuService.count(new QueryWrapper<SysMenu>().eq("parent_id", id));
         if (count > 0) {
             return R.failure("请先删除子菜单");
         }
-
         sysMenuService.removeById(id);
         // 同步删除中间关联表
         sysRoleMenuService.remove(new QueryWrapper<SysRoleMenu>().eq("menu_id", id));
@@ -88,9 +87,10 @@ public class SysMenuController extends BaseController {
     public R nav(Principal principal) {
         SysUser sysUser = sysUserService.getSysUserByUsername(principal.getName());
         String authority = sysUserService.getAuthorityByUserId(sysUser.getUserId());
+        String[] authorityInfo = StringUtils.tokenizeToStringArray(authority, ",");
         List<SysMenuDTO> menuDTOList = sysMenuService.listMenuDTO(sysUser.getUserId());
         return R.success(MapUtil.builder()
-                .put("Authority", authority)
+                .put("Authority", authorityInfo)
                 .put("nav", menuDTOList)
                 .map()
         );

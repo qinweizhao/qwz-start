@@ -15,14 +15,22 @@ public class Constants {
      * 密码
      */
     public static final String LOGIN_PASS_KEY = "password";
+
     /**
      * 验证码
      */
     public static final String LOGIN_CODE_KEY = "captcha";
+
+    /**
+     * 验证码
+     */
+    public static final String BASE64_PREFIX = "data:image/jpeg;base64,";;
+
     /**
      * 默认密码
      */
     public static final String DEFAULT_PASSWORD = "888888";
+
     /**
      * 默认头像
      */
