@@ -1,6 +1,6 @@
 <p align="center">
   <a class="logo" href="https://github.com/qinweizhao/qwz-authority">
-    <img src="https://www.qinweizhao.com/upload/2021/11/authority-024117b22e2c4664bc208d97519e1b72.png" height="80" width="45%" alt="Authority">
+    <img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-authority@master/Authority.png" height="80" width="45%" alt="Authority">
   </a>
 </p>
 
@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://github.com/qinweizhao/qwz-authority" target="_blank">
-    <img src="https://img.shields.io/badge/Release-1.0.0-green" alt="Release"/>
+    <img src="https://img.shields.io/badge/Release-1.0.4-green" alt="Release"/>
   </a>
 </p>
 
