@@ -30,11 +30,11 @@ Authority 是一个前后端分离的权限管理系统，是从零开始搭建�
 
 ```
 qwz-authority
-├─authority-back  后端源码（已内置前端代码）
+├─authority-backend  后端源码（已内置前端代码）
 │
-├─authority-front 前端源码
+├─authority-frontend 前端源码
 │ 
-├─authority-resource 资源
+├─authority-resource 项目资源
 ```
 
 ### 3.实现功能
