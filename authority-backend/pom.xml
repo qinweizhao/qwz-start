@@ -11,10 +11,10 @@
     </parent>
 
     <groupId>com.qinweizhao</groupId>
-    <artifactId>authority-back</artifactId>
+    <artifactId>authority-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>project-authority-back</name>
+    <name>authority-backend</name>
 
     <properties>
         <java.version>11</java.version>
