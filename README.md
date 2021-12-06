@@ -19,7 +19,7 @@
 
 ## 1、简介
 
-Authority 是一个前后端分离的权限管理系统，是从零开始搭建的一个项目骨架。
+calf-fast 是一个前后端分离的权限管理系统，是从零开始搭建的一个项目骨架。
 
 ### 1.技术栈
 
@@ -29,12 +29,12 @@ Authority 是一个前后端分离的权限管理系统，是从零开始搭建�
 ### 2.仓库结构
 
 ```
-qwz-authority
-├─authority-backend  后端源码（已内置前端代码）
+qwz-calf-fast
+├─calf-backend  后端源码（已内置前端代码）
 │
-├─authority-frontend 前端源码
+├─calf-frontend 前端源码
 │ 
-├─authority-resource 项目资源
+├─calf-resource 项目资源
 ```
 
 ### 3.实现功能
