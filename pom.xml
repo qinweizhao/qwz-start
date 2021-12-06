@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.qinweizhao</groupId>
-    <artifactId>qwz-calf</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>qwz-calf-fast</artifactId>
+    <version>1.1.0</version>
     <packaging>pom</packaging>
 
     <name>calf</name>
