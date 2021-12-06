@@ -7,7 +7,7 @@
         ref="loginForm"
         label-width="80px"
     >
-      <h3 class="title" style="height: 40px">Authority</h3>
+      <h3 class="title" style="height: 40px">Calf</h3>
       <el-form-item label="账号" prop="username">
         <el-input v-model="loginForm.username" style="width: 230px"></el-input>
       </el-form-item>
