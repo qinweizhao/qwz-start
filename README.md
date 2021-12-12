@@ -1,5 +1,5 @@
 <p align="center">
-  <a class="logo" href="https://github.com/qinweizhao/qwz-authority">
+  <a class="logo" href="https://github.com/qinweizhao/qwz-calf-fast">
     <img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast@master/logo.png" height="80" width="45%" alt="Authority">
   </a>
 </p>
@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/qinweizhao/qwz-authority" target="_blank">
+  <a href="https://github.com/qinweizhao/qwz-calf-fast" target="_blank">
     <img src="https://img.shields.io/badge/Release-1.0.4-green" alt="Release"/>
   </a>
 </p>
@@ -63,11 +63,11 @@ qwz-calf-fast
 
 <table>
     <tr>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-authority/authority-resource/img/2021-11-24_142100.png"/></td>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-authority/authority-resource/img/2021-11-24_142259.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/authority-resource/img/2021-11-24_142100.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/authority-resource/img/2021-11-24_142259.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-authority/authority-resource/img/2021-11-24_142319.png"/></td>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-authority/authority-resource/img/2021-11-24_142359.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/authority-resource/img/2021-11-24_142319.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/authority-resource/img/2021-11-24_142359.png"/></td>
     </tr>
 </table>
