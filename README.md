@@ -48,9 +48,9 @@ qwz-calf-fast
 
 - 启动项目
 
-  1. 用 authority-resource 中的 sql 文件创建数据库。
+  1. 用 calf-resource 中的 sql 文件创建数据库。
 
-  2. 更改 authority-back 配置文件中的数据库配置（根据实际情况更改）
+  2. 更改 calf-back 配置文件中的数据库配置（根据实际情况更改）
 
   3. 项目地址：http://ip:port/index.html
 - 二次开发
@@ -63,11 +63,11 @@ qwz-calf-fast
 
 <table>
     <tr>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/authority-resource/img/2021-11-24_142100.png"/></td>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/authority-resource/img/2021-11-24_142259.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/calf-resource/img/2021-11-24_142100.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/calf-resource/img/2021-11-24_142259.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/authority-resource/img/2021-11-24_142319.png"/></td>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/authority-resource/img/2021-11-24_142359.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/calf-resource/img/2021-11-24_142319.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/calf-resource/img/2021-11-24_142359.png"/></td>
     </tr>
 </table>
