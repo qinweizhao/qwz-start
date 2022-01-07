@@ -1,6 +1,6 @@
 <p align="center">
-  <a class="logo" href="https://github.com/qinweizhao/qwz-calf-fast">
-    <img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast@master/logo.png" height="80" width="45%" alt="Authority">
+  <a class="logo" href="https://github.com/qinweizhao/qwz-start">
+    <img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-start@master/logo.png" height="80" width="45%" alt="Authority">
   </a>
 </p>
 
@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/qinweizhao/qwz-calf-fast" target="_blank">
-    <img src="https://img.shields.io/badge/Release-1.0.4-green" alt="Release"/>
+  <a href="https://github.com/qinweizhao/qwz-start" target="_blank">
+    <img src="https://img.shields.io/github/manifest-json/v/qinweizhao/qwz-start" alt="Release"/>
   </a>
 </p>
 
@@ -29,7 +29,7 @@ calf-fast 是一个前后端分离的权限管理系统，是从零开始搭建�
 ### 2.仓库结构
 
 ```
-qwz-calf-fast
+qwz-start
 ├─calf-backend  后端源码（已内置前端代码）
 │
 ├─calf-frontend 前端源码
@@ -63,11 +63,11 @@ qwz-calf-fast
 
 <table>
     <tr>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/calf-resource/img/2021-11-24_142100.png"/></td>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/calf-resource/img/2021-11-24_142259.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-start/calf-resource/img/2021-11-24_142100.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-start/calf-resource/img/2021-11-24_142259.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/calf-resource/img/2021-11-24_142319.png"/></td>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf-fast/calf-resource/img/2021-11-24_142359.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-start/calf-resource/img/2021-11-24_142319.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-start/calf-resource/img/2021-11-24_142359.png"/></td>
     </tr>
 </table>

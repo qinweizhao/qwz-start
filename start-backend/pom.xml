@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.qinweizhao</groupId>
-        <artifactId>qwz-calf-fast</artifactId>
+        <artifactId>qwz-start</artifactId>
         <version>1.1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>calf-backend</artifactId>
+    <artifactId>start-backend</artifactId>
 
-    <name>A-backend</name>
+    <name>a-backend</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
