@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://github.com/qinweizhao/qwz-start" target="_blank">
-    <img src="https://img.shields.io/github/manifest-json/v/qinweizhao/qwz-start" alt="Release"/>
+    <img src="https://img.shields.io/github/v/release/qinweizhao/qwz-start?include_prereleases" alt="Release"/>
   </a>
 </p>
 
