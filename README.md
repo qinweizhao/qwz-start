@@ -62,11 +62,11 @@ qwz-start
 
 <table>
     <tr>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-start/calf-resource/img/2021-11-24_142100.png"/></td>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-start/calf-resource/img/2021-11-24_142259.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-start/start-resource/img/2021-11-24_142100.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-start/start-resource/img/2021-11-24_142259.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-start/calf-resource/img/2021-11-24_142319.png"/></td>
-        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-start/calf-resource/img/2021-11-24_142359.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-start/start-resource/img/2021-11-24_142319.png"/></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-start/start-resource/img/2021-11-24_142359.png"/></td>
     </tr>
 </table>
