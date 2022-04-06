@@ -227,7 +227,6 @@ export default {
       dialogVisible: false,
       multipleSelection: [],
       menuOptions: [],
-      tableData: [],
       // 表单校验
       rules: {
         menuName: [
