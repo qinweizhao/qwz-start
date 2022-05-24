@@ -1,6 +1,6 @@
 <p align="center">
   <a class="logo" href="https://github.com/qinweizhao/qwz-start">
-    <img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-start@master/logo.png" height="80" width="45%" alt="Authority">
+    <img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-start@master/logo.png" height="80" width="45%" alt="Start">
   </a>
 </p>
 
@@ -16,6 +16,7 @@
 
 
 ![Alt](https://repobeats.axiom.co/api/embed/6dee7bbf96e544ace905953662d3b3725d76918e.svg "Analytics image")
+
 ## 1、简介
 
 start 是一个前后端分离的权限管理系统，是从零开始搭建的一个项目骨架。
