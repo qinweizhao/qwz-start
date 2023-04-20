@@ -23,7 +23,7 @@ public class SysUser {
     /**
      * 用户ID
      */
-    @TableId(value = "user_id", type = IdType.AUTO)
+    @TableId(value = "user_id", type = IdType.NONE)
     private Long userId;
 
     /**

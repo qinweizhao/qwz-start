@@ -3,9 +3,9 @@ spring:
   # 数据库连接
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://42.192.49.72:3306/project-authority?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&allowMultiQueries=true&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://127.0.0.1:3306/qwz-start?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&allowMultiQueries=true&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
     username: root
-    password: Qwz#1201
+    password:
 
 qinweizhao:
   jwt:
